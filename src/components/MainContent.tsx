@@ -1,6 +1,5 @@
-import './MainContent.css';
-import { ScreenBacklog } from './ScreenBacklog';
-import { ScreenSprint } from './ScreenSprint';
+import "./MainContent.css";
+import { ScreenSprint } from "./ScreenSprint";
 const MainContent = () => {
   return (
     <main className="main-content">
@@ -10,4 +9,4 @@ const MainContent = () => {
   );
 };
 
-export default MainContent; 
+export default MainContent;
