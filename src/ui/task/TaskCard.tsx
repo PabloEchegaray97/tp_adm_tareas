@@ -1,76 +1,36 @@
-import { Box, Card, CardContent, IconButton, Typography, Select, MenuItem } from '@mui/material';
+import React from 'react';
+import Card from '../common/Card';
+import Button from '../common/Button';
+import './TaskCard.css';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const TaskCard = () => {
+const TaskCard: React.FC = () => {
   return (
-    <Card sx={{ mb: 2, bgcolor: 'background.paper' }}>
-      <CardContent>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Box>
-            <Typography variant="h6">
-              Título: Tarea 2
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Descripción: Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-            </Typography>
-          </Box>
-          <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-            <Select
-              value=""
-              size="small"
-              sx={{ 
-                minWidth: 120, 
-                bgcolor: 'action.hover',
-                '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'divider'
-                }
-              }}
-            >
-              <MenuItem value="">Seleccione una sprint</MenuItem>
-            </Select>
-            <IconButton 
-              size="small"
-              sx={{ 
-                width: 40,
-                height: 40,
-                bgcolor: 'action.hover',
-                '&:hover': {
-                  bgcolor: 'action.selected'
-                }
-              }}
-            >
-              <VisibilityIcon fontSize="small" />
-            </IconButton>
-            <IconButton 
-              size="small"
-              sx={{ 
-                width: 40,
-                height: 40,
-                bgcolor: 'action.hover',
-                '&:hover': {
-                  bgcolor: 'action.selected'
-                }
-              }}
-            >
-              <EditIcon fontSize="small" />
-            </IconButton>
-            <IconButton 
-              sx={{ 
-                width: 40,
-                height: 40,
-                bgcolor: 'action.hover',
-                '&:hover': {
-                  bgcolor: 'action.selected'
-                }
-              }}
-            >
-              <DeleteIcon fontSize="small" />
-            </IconButton>
-          </Box>
-        </Box>
-      </CardContent>
+    <Card>
+      <div className="task-card-content">
+        <div className="task-card-info">
+          <h3 className="task-card-title">Título: Tarea 2</h3>
+          <p className="task-card-description">
+            Descripción: Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+          </p>
+        </div>
+        <div className="task-card-actions">
+          <select className="task-card-select">
+            <option value="">Seleccione una sprint</option>
+          </select>
+          <Button variant="text" size="small" className="task-card-button">
+            <VisibilityIcon />
+          </Button>
+          <Button variant="text" size="small" className="task-card-button">
+            <EditIcon />
+          </Button>
+          <Button variant="text" size="small" className="task-card-button">
+            <DeleteIcon />
+          </Button>
+        </div>
+      </div>
     </Card>
   );
 };

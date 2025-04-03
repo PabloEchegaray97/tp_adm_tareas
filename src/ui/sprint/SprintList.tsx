@@ -1,5 +1,6 @@
-import { Box, List, Typography } from '@mui/material';
 import SprintListItem from './SprintListItem';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import './SprintList.css';
 
 const SprintList = () => {
   const sprints = [
@@ -16,14 +17,17 @@ const SprintList = () => {
   ];
 
   return (
-    <Box>
-      <Box sx={{ p: 2 }}>
-        <Typography variant="subtitle1" sx={{ textAlign: 'center', fontWeight: 'bold', fontSize: '1.2rem' }}>
-          Lista de Sprints
-        </Typography>
-      </Box>
+    <div className="sprint-list">
+      <div className="sprint-list-header">
+        <div className="sprint-list-title-container">
+          <h2 className="sprint-list-title">Lista de Sprints</h2>
+          <button className="sprint-list-add-button">
+            <PlaylistAddIcon />
+          </button>
+        </div>
+      </div>
       
-      <List>
+      <ul className="sprint-list-items">
         {sprints.map((sprint, index) => (
           <SprintListItem
             key={index}
@@ -32,8 +36,8 @@ const SprintList = () => {
             endDate={sprint.endDate}
           />
         ))}
-      </List>
-    </Box>
+      </ul>
+    </div>
   );
 };
 

@@ -1,48 +1,28 @@
-import { Box, CssBaseline, ThemeProvider, createTheme } from '@mui/material';
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import Sidebar from './layouts/Sidebar';
 import MainContent from './components/MainContent';
 import Navbar from './layouts/Navbar';
+import './styles/theme.css';
 
 function App() {
-  const [mode, setMode] = useState<'light' | 'dark'>('dark');
-
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-          ...(mode === 'dark' ? {
-            background: {
-              default: '#121212',
-              paper: '#1a1a1a',
-            }
-          } : {
-            background: {
-              default: '#f5f5f5',
-              paper: '#ffffff',
-            }
-          })
-        },
-      }),
-    [mode],
-  );
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const toggleTheme = () => {
-    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+    setIsDarkMode(prev => !prev);
+    document.documentElement.setAttribute('data-theme', isDarkMode ? 'light' : 'dark');
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-        <Navbar onToggleTheme={toggleTheme} isDarkMode={mode === 'dark'} />
-        <Box sx={{ display: 'flex', flex: 1 }}>
+    <BrowserRouter>
+      <div className="app">
+        <Navbar onToggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+        <div className="app-content">
           <Sidebar />
           <MainContent />
-        </Box>
-      </Box>
-    </ThemeProvider>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

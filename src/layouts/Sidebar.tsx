@@ -1,41 +1,31 @@
-import { Box, Button, Divider, Drawer } from '@mui/material';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import Button from '../ui/common/Button';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import SprintList from '../ui/sprint/SprintList';
-
-const drawerWidth = 240;
+import './Sidebar.css';
 
 const Sidebar = () => {
   return (
-    <Drawer
-      variant="permanent"
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        '& .MuiDrawer-paper': {
-          width: drawerWidth,
-          boxSizing: 'border-box',
-
-        },
-      }}
-    >
-      <Box sx={{ p: 1.72}}>
-        <Button
-          variant="contained"
-          fullWidth
-          startIcon={<FormatListBulletedIcon />}
-          sx={{ 
-            bgcolor: theme => theme.palette.mode === 'dark' ? 'white' : 'black',
-            color: theme => theme.palette.mode === 'dark' ? 'black' : 'white',
-           }}
-        >
-          Backlog
-        </Button>
-      </Box>
-      
-      <Divider sx={{ backgroundColor: 'rgba(255,255,255,0.12)' }} />
-      
-      <SprintList />
-    </Drawer>
+    <aside className="sidebar">
+      <div className="sidebar-content">
+        <div className="sidebar-header">
+          <NavLink to="/backlog" className="sidebar-link">
+            <Button
+              variant="contained"
+              className="backlog-button"
+              startIcon={<FormatListBulletedIcon />}
+            >
+              Backlog
+            </Button>
+          </NavLink>
+        </div>
+        
+        <div className="sidebar-divider" />
+        
+        <SprintList />
+      </div>
+    </aside>
   );
 };
 

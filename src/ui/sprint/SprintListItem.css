@@ -1,0 +1,59 @@
+.sprint-list-item {
+  padding: 0;
+  margin-bottom: 4px;
+  background-color: var(--color-bg-card);
+}
+
+.sprint-list-item-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.sprint-list-item-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  text-align: left;
+  border-radius: 4px;
+}
+
+.sprint-list-item-link:hover .sprint-list-item-button {
+  background-color: var(--color-hover);
+}
+
+.sprint-list-item-icon {
+  margin-right: 16px;
+  display: flex;
+  align-items: center;
+  color: var(--color-text-primary);
+}
+
+.sprint-list-item-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.sprint-list-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.sprint-list-item-title {
+  font-weight: 500;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sprint-list-item-dates {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  line-height: 1.2;
+} 
