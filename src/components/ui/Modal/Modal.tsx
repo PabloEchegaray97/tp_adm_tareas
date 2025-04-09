@@ -45,7 +45,7 @@ export const Modal: FC<IModal> = ({ handleCloseModal }) => {
   return (
     <div className={styles.containerPrincipalModal}>
       <div className={styles.contentPopUP}>
-        <div>
+        <div className={styles.title}>
           Crear Tarea
           {/* <h3>{tareaActiva ? "Editar tarea " : "Crear Tarea"}</h3> */}
         </div>
@@ -53,15 +53,38 @@ export const Modal: FC<IModal> = ({ handleCloseModal }) => {
 
         <form action="" className={styles.formContent}>
           <div>
-            <input
-              placeholder="Ingrese un Titulo"
-              type="text"
-              required
-              // onChange={handleChange}
-              // value={formValues.titulo}
-              autoComplete="off"
-              name="titulo"
-            />
+            <div className={styles.inputContainer}>
+              <div className={styles.inputContainerItem}>
+                <label htmlFor="titulo">
+                  Título de la tarea
+                </label>
+                <input
+                  placeholder="Ingrese un Titulo"
+                  type="text"
+                  required
+                  // onChange={handleChange}
+                  // value={formValues.titulo}
+                  autoComplete="off"
+                  name="titulo"
+                />
+              </div>
+              <div className={styles.inputContainerItem}>
+                <label htmlFor="date">
+                  Seleccione una fecha
+                </label>
+                <input
+                  type="date"
+                  required
+                  // onChange={handleChange}
+                  // value={formValues.fechaLimite}
+                  autoComplete="off"
+                  name="fechaLimite"
+                />
+              </div>
+            </div>
+            <label htmlFor="descripcion">
+              Descripción de la tarea
+            </label>
             <textarea
               placeholder="Ingrese una descripción"
               required
@@ -69,15 +92,10 @@ export const Modal: FC<IModal> = ({ handleCloseModal }) => {
               // value={formValues.descripcion}
               name="descripcion"
               id=""
+              className={styles.textArea}
+              cols={30}
             ></textarea>
-            <input
-              type="date"
-              required
-              // onChange={handleChange}
-              // value={formValues.fechaLimite}
-              autoComplete="off"
-              name="fechaLimite"
-            />
+
           </div>
           <div className={styles.buttonCard}>
             <button onClick={handleCloseModal}>Cancelar</button>

@@ -19,9 +19,9 @@
   gap: 1rem;
   justify-content: space-between;
   background-color: var(--color-bg-secondary);
-  width: 50vw;
+  width: 40vw;
   padding: 1rem;
-  border-radius: 0.8rem;
+  border-radius: 0.3rem;
   animation: fadeIn 0.5s;
 }
 
@@ -40,11 +40,16 @@ textarea {
   padding: 0.5rem;
   resize: none;
   margin: 0.5rem 0;
+  font-family: inherit;
+  font-size: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: .3rem;
 }
 
 .buttonCard {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 1rem;
   width: 100%;
 }
 
@@ -61,6 +66,23 @@ textarea {
 .buttonCard button:hover {
   background-color: var(--color-hover);
   transform: scale(1.05);
+}
+
+.title {
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-text-primary);
+  text-align: center;
+}
+.inputContainer {
+  display: flex;
+  gap: 1rem;
+}
+.inputContainerItem {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 @keyframes fadeIn {
