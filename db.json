@@ -22,6 +22,29 @@
           "description": "Configurar el login y registro con Firebase Authentication."
         }
       ]
+    },
+    {
+      "id": "sprint-002",
+      "title": "Sprint 2",
+      "startDate": "2025-05-01",
+      "closingDate": "2025-05-12",
+      "tasks": [
+        {
+          "id": "task-001",
+          "title": "Configurar el entorno de desarrollo",
+          "description": "Instalar dependencias y configurar el proyecto en local."
+        },
+        {
+          "id": "task-002",
+          "title": "Diseñar la página de inicio",
+          "description": "Crear el diseño de la landing page según el prototipo de Figma."
+        },
+        {
+          "id": "task-003",
+          "title": "Implementar autenticación",
+          "description": "Configurar el login y registro con Firebase Authentication."
+        }
+      ]
     }
   ]
 }

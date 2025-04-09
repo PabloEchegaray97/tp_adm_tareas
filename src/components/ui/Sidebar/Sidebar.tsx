@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import "./Sidebar.css";
-import SprintList from "../Sprint/SprintList";
+import SprintList from "../SprintList/SprintList";
 import Button from "../Button/Button";
 
 const Sidebar = () => {
