@@ -1,9 +1,8 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import Button from '../ui/common/Button';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import SprintList from '../ui/sprint/SprintList';
-import './Sidebar.css';
+import { NavLink } from "react-router-dom";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import "./Sidebar.css";
+import SprintList from "../Sprint/SprintList";
+import Button from "../Button/Button";
 
 const Sidebar = () => {
   return (
@@ -20,13 +19,13 @@ const Sidebar = () => {
             </Button>
           </NavLink>
         </div>
-        
+
         <div className="sidebar-divider" />
-        
+
         <SprintList />
       </div>
     </aside>
   );
 };
 
-export default Sidebar; 
+export default Sidebar;

@@ -1,10 +1,10 @@
-import React from 'react';
-import Card from '../common/Card';
-import Button from '../common/Button';
-import './TaskCard.css';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import React from "react";
+import Card from "../Card/Card";
+import Button from "../Button/Button";
+import "./TaskCard.css";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const TaskCard: React.FC = () => {
   return (
@@ -13,7 +13,8 @@ const TaskCard: React.FC = () => {
         <div className="task-card-info">
           <h3 className="task-card-title">Título: Tarea 2</h3>
           <p className="task-card-description">
-            Descripción: Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+            Descripción: Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Quisquam, quos.
           </p>
         </div>
         <div className="task-card-actions">
@@ -35,4 +36,4 @@ const TaskCard: React.FC = () => {
   );
 };
 
-export default TaskCard; 
+export default TaskCard;

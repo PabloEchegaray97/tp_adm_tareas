@@ -1,19 +1,19 @@
-import SprintListItem from './SprintListItem';
-import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
-import './SprintList.css';
+import SprintListItem from "../SprintListItem/SprintListItem";
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+import "./SprintList.css";
 
 const SprintList = () => {
   const sprints = [
     {
-      sprintNumber: 'Sprint 122',
-      startDate: '2025-03-04',
-      endDate: '2025-03-11'
+      sprintNumber: "Sprint 122",
+      startDate: "2025-03-04",
+      endDate: "2025-03-11",
     },
     {
-      sprintNumber: 'Sprint 121',
-      startDate: '2025-02-20',
-      endDate: '2025-02-27'
-    }
+      sprintNumber: "Sprint 121",
+      startDate: "2025-02-20",
+      endDate: "2025-02-27",
+    },
   ];
 
   return (
@@ -26,7 +26,7 @@ const SprintList = () => {
           </button>
         </div>
       </div>
-      
+
       <ul className="sprint-list-items">
         {sprints.map((sprint, index) => (
           <SprintListItem
@@ -41,4 +41,4 @@ const SprintList = () => {
   );
 };
 
-export default SprintList; 
+export default SprintList;

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Sidebar from './Sidebar';
-import Navbar from './Navbar';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Sidebar from "../ui/Sidebar/Sidebar";
+import Navbar from "../ui/NavBar/Navbar";
 
 interface LayoutProps {
   isDarkMode: boolean;
@@ -22,4 +22,4 @@ const Layout: React.FC<LayoutProps> = ({ isDarkMode, onToggleTheme }) => {
   );
 };
 
-export default Layout; 
+export default Layout;

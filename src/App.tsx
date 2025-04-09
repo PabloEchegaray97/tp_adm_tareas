@@ -1,16 +1,19 @@
-import { useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import Sidebar from './layouts/Sidebar';
-import MainContent from './components/MainContent';
-import Navbar from './layouts/Navbar';
-import './styles/theme.css';
+import { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
+import MainContent from "./components/screens/MainContent/MainContent";
+import "./styles/theme.css";
+import Sidebar from "./components/ui/Sidebar/Sidebar";
+import Navbar from "./components/ui/NavBar/Navbar";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const toggleTheme = () => {
-    setIsDarkMode(prev => !prev);
-    document.documentElement.setAttribute('data-theme', isDarkMode ? 'light' : 'dark');
+    setIsDarkMode((prev) => !prev);
+    document.documentElement.setAttribute(
+      "data-theme",
+      isDarkMode ? "light" : "dark"
+    );
   };
 
   return (
