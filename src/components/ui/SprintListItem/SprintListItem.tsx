@@ -3,17 +3,19 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import './SprintListItem.css';
 
 interface SprintListItemProps {
+  sprintId?: string;
   sprintNumber: string;
   startDate: string;
   endDate: string;
 }
 
-const SprintListItem = ({ sprintNumber, startDate, endDate }: SprintListItemProps) => {
-  const sprintId = sprintNumber.toLowerCase().replace(' ', '-');
+const SprintListItem = ({ sprintId, sprintNumber, startDate, endDate }: SprintListItemProps) => {
+  // Si no se proporciona un ID específico, generarlo a partir del título
+  const routeId = sprintId || sprintNumber.toLowerCase().replace(' ', '-');
   
   return (
     <li className="sprint-list-item">
-      <NavLink to={`/sprint/${sprintId}`} className="sprint-list-item-link">
+      <NavLink to={`/sprint/${routeId}`} className="sprint-list-item-link">
         <div className="sprint-list-item-button">
           <div className="sprint-list-item-icon">
             <FormatListBulletedIcon />

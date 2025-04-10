@@ -1,5 +1,25 @@
 {
-  "tareas": [
+  "backlog": [
+    {
+      "id": "backlog-001",
+      "title": "Implementar sistema de notificaciones",
+      "description": "Crear un sistema de notificaciones para alertar a los usuarios sobre cambios en las tareas.",
+      "createdAt": "2025-03-15"
+    },
+    {
+      "id": "backlog-002",
+      "title": "Optimizar rendimiento de carga",
+      "description": "Mejorar el tiempo de carga de la aplicación reduciendo el tamaño de los bundles.",
+      "createdAt": "2025-03-18"
+    },
+    {
+      "id": "backlog-003",
+      "title": "Integrar analíticas",
+      "description": "Configurar Google Analytics para monitorear el uso de la aplicación.",
+      "createdAt": "2025-03-20"
+    }
+  ],
+  "sprints": [
     {
       "id": "sprint-001",
       "title": "Sprint 1",
@@ -9,17 +29,23 @@
         {
           "id": "task-001",
           "title": "Configurar el entorno de desarrollo",
-          "description": "Instalar dependencias y configurar el proyecto en local."
+          "description": "Instalar dependencias y configurar el proyecto en local.",
+          "status": "completed",
+          "deadline": "2025-04-03"
         },
         {
           "id": "task-002",
           "title": "Diseñar la página de inicio",
-          "description": "Crear el diseño de la landing page según el prototipo de Figma."
+          "description": "Crear el diseño de la landing page según el prototipo de Figma.",
+          "status": "in-progress",
+          "deadline": "2025-04-08"
         },
         {
           "id": "task-003",
           "title": "Implementar autenticación",
-          "description": "Configurar el login y registro con Firebase Authentication."
+          "description": "Configurar el login y registro con Firebase Authentication.",
+          "status": "pending",
+          "deadline": "2025-04-12"
         }
       ]
     },
@@ -30,19 +56,25 @@
       "closingDate": "2025-05-12",
       "tasks": [
         {
-          "id": "task-001",
-          "title": "Configurar el entorno de desarrollo",
-          "description": "Instalar dependencias y configurar el proyecto en local."
+          "id": "task-004",
+          "title": "Desarrollar API de usuarios",
+          "description": "Crear endpoints para gestión de perfiles de usuario.",
+          "status": "pending",
+          "deadline": "2025-05-05"
         },
         {
-          "id": "task-002",
-          "title": "Diseñar la página de inicio",
-          "description": "Crear el diseño de la landing page según el prototipo de Figma."
+          "id": "task-005",
+          "title": "Diseñar panel de administración",
+          "description": "Maquetar la interfaz del panel de control para administradores.",
+          "status": "pending",
+          "deadline": "2025-05-08"
         },
         {
-          "id": "task-003",
-          "title": "Implementar autenticación",
-          "description": "Configurar el login y registro con Firebase Authentication."
+          "id": "task-006",
+          "title": "Implementar sistema de roles",
+          "description": "Configurar permisos y roles de usuarios en el sistema.",
+          "status": "in-progress",
+          "deadline": "2025-05-10"
         }
       ]
     }

@@ -3,7 +3,7 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   width: calc(100vw - 300px);
   margin-left: 300px;
   overflow-x: hidden;
@@ -13,6 +13,7 @@
 .backlog-header {
   display: flex;
   flex-direction: column;
+  text-align: center;
   gap: 1rem;
 }
 
@@ -24,8 +25,7 @@
 
 .header-actions {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between !important;
 }
 
 .header-actions span {

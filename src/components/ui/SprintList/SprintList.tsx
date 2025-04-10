@@ -1,20 +1,28 @@
+import { useState, useEffect } from "react";
 import SprintListItem from "../SprintListItem/SprintListItem";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import "./SprintList.css";
+import { getAllSprints } from "../../../http/sprint";
+import { ISprint } from "../../../types/ISprint";
 
 const SprintList = () => {
-  const sprints = [
-    {
-      sprintNumber: "Sprint 122",
-      startDate: "2025-03-04",
-      endDate: "2025-03-11",
-    },
-    {
-      sprintNumber: "Sprint 121",
-      startDate: "2025-02-20",
-      endDate: "2025-02-27",
-    },
-  ];
+  const [sprints, setSprints] = useState<ISprint[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSprints = async () => {
+      try {
+        const sprintsData = await getAllSprints();
+        setSprints(sprintsData);
+      } catch (error) {
+        console.error("Error al cargar los sprints:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSprints();
+  }, []);
 
   return (
     <div className="sprint-list">
@@ -28,14 +36,21 @@ const SprintList = () => {
       </div>
 
       <ul className="sprint-list-items">
-        {sprints.map((sprint, index) => (
-          <SprintListItem
-            key={index}
-            sprintNumber={sprint.sprintNumber}
-            startDate={sprint.startDate}
-            endDate={sprint.endDate}
-          />
-        ))}
+        {loading ? (
+          <li className="sprint-list-loading">Cargando...</li>
+        ) : sprints.length > 0 ? (
+          sprints.map((sprint) => (
+            <SprintListItem
+              key={sprint.id}
+              sprintId={sprint.id}
+              sprintNumber={sprint.title}
+              startDate={sprint.startDate}
+              endDate={sprint.closingDate}
+            />
+          ))
+        ) : (
+          <li className="sprint-list-empty">No hay sprints disponibles</li>
+        )}
       </ul>
     </div>
   );

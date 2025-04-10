@@ -54,3 +54,8 @@
   align-items: center;
   justify-content: center;
 }
+
+.task-created-at {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}

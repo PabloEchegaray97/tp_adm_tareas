@@ -5,14 +5,20 @@ import { Share, Visibility, Edit, Delete } from "@mui/icons-material";
 interface TaskCardProps {
   title: string;
   description: string;
+  createdAt?: string;
 }
 
-export const TaskCard: React.FC<TaskCardProps> = ({ title, description }) => {
+export const TaskCard: React.FC<TaskCardProps> = ({ 
+  title, 
+  description, 
+  createdAt 
+}) => {
   return (
     <div className="task-card">
       <div className="task-content">
         <span className="task-title">Título: {title}</span>
         <span className="task-description">Descripción: {description}</span>
+        {createdAt && <span className="task-created-at">Creado: {createdAt}</span>}
       </div>
       <div className="task-actions">
         <button className="action-btn">
