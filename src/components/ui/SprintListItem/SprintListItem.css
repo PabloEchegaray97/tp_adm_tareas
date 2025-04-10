@@ -2,6 +2,7 @@
   padding: 0;
   margin-bottom: 4px;
   background-color: var(--color-bg-card);
+
 }
 
 .sprint-list-item-link {
@@ -28,7 +29,7 @@
 }
 
 .sprint-list-item-icon {
-  margin-right: 16px;
+  margin-right: .5rem;
   display: flex;
   align-items: center;
   color: var(--color-text-primary);
@@ -42,6 +43,7 @@
 .sprint-list-item-content {
   flex: 1;
   min-width: 0;
+  margin-left: .5rem;
 }
 
 .sprint-list-item-title {
@@ -50,10 +52,32 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 1.2rem;
 }
 
 .sprint-list-item-dates {
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: var(--color-text-secondary);
   line-height: 1.2;
 } 
+
+.sprint-list-item-content-header {
+  display: flex;
+}
+
+.sprint-list-item-buttons {
+  display: flex;
+  align-items: center;
+  gap: .2rem;
+  flex-direction: column;
+  padding:.5rem
+}
+.sprint-list-item-button {
+  padding: .2rem;
+}
+
+
+.sprint-list-item-button svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
