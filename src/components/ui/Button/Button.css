@@ -10,8 +10,8 @@
 }
 
 .button-contained {
-  background-color: var(--color-button-bg);
-  color: var(--color-button-text);
+  background-color: var(--color-bg-card);
+  color: var(--color-text-primary);
 }
 
 .button-outlined {
