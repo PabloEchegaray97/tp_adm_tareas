@@ -56,7 +56,7 @@ export const ScreenSprint = () => {
   return (
     <div className="screen-sprint">
       <div className="sprint-header">
-        <h1>Nombre del sprint: {sprint.title}</h1>
+        <h1>Sprint: {sprint.title}</h1>
         <div className="header-actions">
           <span>Fecha de inicio: {sprint.startDate} - Fecha de cierre: {sprint.closingDate}</span>
           <button className="create-task-btn">
