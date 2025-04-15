@@ -14,4 +14,17 @@ export const getBacklogTasks = async (): Promise<ITask[]> => {
     );
     throw error;
   }
+};
+
+export const createBacklogTask = async (task: ITask): Promise<ITask> => {
+  try {
+    const response = await axios.post(API_URL, task);
+    return response.data;
+  } catch (error) {
+    console.log(
+      "Error al crear tarea en el backlog.",
+      error
+    );
+    throw error;
+  }
 }; 

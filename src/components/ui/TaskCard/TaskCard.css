@@ -5,13 +5,16 @@
   padding: 1rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  
+
 }
 
 .task-content {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  flex: 1;
 }
 
 .task-title,
@@ -28,6 +31,9 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-top: 1rem;
 }
 
 .action-btn {
@@ -48,6 +54,11 @@
   background-color: var(--color-hover);
 }
 
+.action-btn:disabled {
+  cursor: not-allowed;
+  border: 1px solid var(--color-border);
+}
+
 .icon {
   font-size: 1.1rem;
   display: flex;
@@ -58,4 +69,26 @@
 .task-created-at {
   font-size: 0.8rem;
   color: var(--color-text-secondary);
+}
+
+.send-btn {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+}
+
+.send-btn:hover {
+  background-color: var(--color-primary-dark);
+  
+}
+
+.action-buttons-group {
+  display: flex;
+  gap: 0.3rem;
+  margin-left: 0.5rem;
+}
+
+.sprint-selector-wrapper {
+  min-width: 200px;
+  flex: 1;
 }

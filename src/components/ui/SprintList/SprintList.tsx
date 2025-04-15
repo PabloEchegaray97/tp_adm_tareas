@@ -2,41 +2,43 @@ import { useState, useEffect } from "react";
 import SprintListItem from "../SprintListItem/SprintListItem";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import "./SprintList.css";
-import { getAllSprints } from "../../../http/sprint";
-import { ISprint } from "../../../types/ISprint";
+import { useSprintStore } from "../../../store";
+import { SprintModal } from "../SprintModal/SprintModal";
 
 const SprintList = () => {
-  const [sprints, setSprints] = useState<ISprint[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { sprints, fetchSprints, isLoading } = useSprintStore();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    const fetchSprints = async () => {
-      try {
-        const sprintsData = await getAllSprints();
-        setSprints(sprintsData);
-      } catch (error) {
-        console.error("Error al cargar los sprints:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchSprints();
-  }, []);
+  }, [fetchSprints]);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    // Refrescar la lista de sprints después de cerrar el modal
+    fetchSprints();
+  };
 
   return (
     <div className="sprint-list">
       <div className="sprint-list-header">
         <div className="sprint-list-title-container">
           <h2 className="sprint-list-title">Lista de Sprints</h2>
-          <button className="sprint-list-add-button">
+          <button 
+            className="sprint-list-add-button"
+            onClick={handleOpenModal}
+          >
             <PlaylistAddIcon />
           </button>
         </div>
       </div>
 
       <ul className="sprint-list-items">
-        {loading ? (
+        {isLoading ? (
           <li className="sprint-list-loading">Cargando...</li>
         ) : sprints.length > 0 ? (
           sprints.map((sprint) => (
@@ -52,6 +54,8 @@ const SprintList = () => {
           <li className="sprint-list-empty">No hay sprints disponibles</li>
         )}
       </ul>
+
+      {showModal && <SprintModal handleCloseModal={handleCloseModal} />}
     </div>
   );
 };

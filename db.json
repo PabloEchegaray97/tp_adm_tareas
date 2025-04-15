@@ -1,22 +1,26 @@
 {
   "backlog": [
     {
-      "id": "backlog-001",
-      "title": "Implementar sistema de notificaciones",
-      "description": "Crear un sistema de notificaciones para alertar a los usuarios sobre cambios en las tareas.",
-      "createdAt": "2025-03-15"
+      "id": "backlog-1744705309897",
+      "title": "Diseñar panel de administración",
+      "description": "Maquetar la interfaz del panel de control para administradores.",
+      "deadline": "2025-05-08",
+      "createdAt": "2025-04-15"
     },
     {
-      "id": "backlog-002",
-      "title": "Optimizar rendimiento de carga",
-      "description": "Mejorar el tiempo de carga de la aplicación reduciendo el tamaño de los bundles.",
-      "createdAt": "2025-03-18"
+      "id": "backlog-1744705319962",
+      "title": "test",
+      "description": "test",
+      "deadline": "2025-04-15",
+      "createdAt": "2025-04-15"
     },
     {
-      "id": "backlog-003",
-      "title": "Integrar analíticas",
-      "description": "Configurar Google Analytics para monitorear el uso de la aplicación.",
-      "createdAt": "2025-03-20"
+      "id": "backlog-1744705330612",
+      "title": "test22",
+      "description": "test22",
+      "deadline": "2025-04-15",
+      "status": "pending",
+      "createdAt": "2025-04-15"
     }
   ],
   "sprints": [
@@ -44,8 +48,22 @@
           "id": "task-003",
           "title": "Implementar autenticación",
           "description": "Configurar el login y registro con Firebase Authentication.",
-          "status": "pending",
+          "status": "completed",
           "deadline": "2025-04-12"
+        },
+        {
+          "title": "Implementar sistema de notificaciones",
+          "description": "Crear un sistema de notificaciones para alertar a los usuarios sobre cambios en las tareas.",
+          "deadline": "2025-04-15",
+          "id": "task-1744706055142",
+          "status": "pending"
+        },
+        {
+          "title": "Optimizar rendimiento de carga",
+          "description": "Mejorar el tiempo de carga de la aplicación reduciendo el tamaño de los bundles.",
+          "deadline": "",
+          "id": "task-1744706717375",
+          "status": "pending"
         }
       ]
     },
@@ -59,24 +77,31 @@
           "id": "task-004",
           "title": "Desarrollar API de usuarios",
           "description": "Crear endpoints para gestión de perfiles de usuario.",
-          "status": "pending",
+          "status": "in-progress",
           "deadline": "2025-05-05"
-        },
-        {
-          "id": "task-005",
-          "title": "Diseñar panel de administración",
-          "description": "Maquetar la interfaz del panel de control para administradores.",
-          "status": "pending",
-          "deadline": "2025-05-08"
         },
         {
           "id": "task-006",
           "title": "Implementar sistema de roles",
           "description": "Configurar permisos y roles de usuarios en el sistema.",
-          "status": "in-progress",
+          "status": "pending",
           "deadline": "2025-05-10"
+        },
+        {
+          "title": "test2",
+          "description": "s22123",
+          "deadline": "2025-04-15",
+          "id": "task-1744705119617",
+          "status": "completed"
         }
       ]
+    },
+    {
+      "id": "sprint-1744707486070",
+      "title": "test",
+      "startDate": "2025-04-15",
+      "closingDate": "2025-04-16",
+      "tasks": []
     }
   ]
 }

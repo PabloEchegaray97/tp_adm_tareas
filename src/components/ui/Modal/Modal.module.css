@@ -1,5 +1,5 @@
 .containerPrincipalModal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
@@ -10,6 +10,7 @@
   height: 100vh;
   backdrop-filter: brightness(50%) blur(10px);
   animation: fadeIn 0.5s;
+  z-index: 9999;
 }
 
 .contentPopUP {

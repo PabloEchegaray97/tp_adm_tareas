@@ -2,35 +2,31 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { AddTask, Visibility, Edit, Delete } from '@mui/icons-material';
 import './ScreenSprint.css';
-import { getSprintById } from '../../../http/sprint';
-import { ISprint } from '../../../types/ISprint';
 import { ITask } from '../../../types/ITask';
+import { Modal } from '../../ui/Modal/Modal';
+import { useTaskStore, useSprintStore } from '../../../store';
 
 export const ScreenSprint = () => {
   const { sprintId } = useParams<{ sprintId: string }>();
-  const [sprint, setSprint] = useState<ISprint | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [showModal, setShowModal] = useState(false);
+  
+  const { 
+    currentSprint: sprint, 
+    isLoading: loading, 
+    error,
+    fetchSprintById,
+    moveTask,
+    deleteTask,
+    moveTaskToBacklog
+  } = useSprintStore();
+  
+  const { setActiveTask } = useTaskStore();
 
   useEffect(() => {
-    const fetchSprintData = async () => {
-      setLoading(true);
-      try {
-        if (!sprintId) {
-          throw new Error('ID de sprint no proporcionado');
-        }
-        const sprintData = await getSprintById(sprintId);
-        setSprint(sprintData);
-      } catch (err) {
-        console.error('Error al cargar el sprint:', err);
-        setError('No se pudo cargar la información del sprint');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSprintData();
-  }, [sprintId]);
+    if (sprintId) {
+      fetchSprintById(sprintId);
+    }
+  }, [sprintId, fetchSprintById]);
 
   // Filtrar tareas por estado
   const getPendingTasks = (): ITask[] => {
@@ -43,6 +39,62 @@ export const ScreenSprint = () => {
 
   const getCompletedTasks = (): ITask[] => {
     return sprint?.tasks.filter(task => task.status === 'completed') || [];
+  };
+
+  const handleOpenModal = () => {
+    setActiveTask(null);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+  
+  const handleEditTask = (taskId: string) => {
+    if (!sprint) return;
+    
+    const task = sprint.tasks.find(t => t.id === taskId);
+    if (task) {
+      setActiveTask(task);
+      setShowModal(true);
+    }
+  };
+  
+  const handleDeleteTask = async (taskId: string) => {
+    if (!sprintId) return;
+    
+    if (window.confirm('¿Estás seguro de que deseas eliminar esta tarea?')) {
+      try {
+        await deleteTask(sprintId, taskId);
+      } catch (error) {
+        console.error('Error al eliminar la tarea:', error);
+        alert('No se pudo eliminar la tarea');
+      }
+    }
+  };
+  
+  const handleMoveTask = async (taskId: string, newStatus: 'pending' | 'in-progress' | 'completed') => {
+    if (!sprintId) return;
+    
+    try {
+      await moveTask(sprintId, taskId, newStatus);
+    } catch (error) {
+      console.error('Error al mover la tarea:', error);
+      alert('No se pudo mover la tarea');
+    }
+  };
+  
+  const handleMoveToBacklog = async (taskId: string) => {
+    if (!sprintId) return;
+    
+    if (window.confirm('¿Estás seguro de que deseas enviar esta tarea al backlog?')) {
+      try {
+        await moveTaskToBacklog(sprintId, taskId);
+      } catch (error) {
+        console.error('Error al mover la tarea al backlog:', error);
+        alert('No se pudo mover la tarea al backlog');
+      }
+    }
   };
 
   if (loading) {
@@ -59,7 +111,7 @@ export const ScreenSprint = () => {
         <h1>Sprint: {sprint.title}</h1>
         <div className="header-actions">
           <span>Fecha de inicio: {sprint.startDate} - Fecha de cierre: {sprint.closingDate}</span>
-          <button className="create-task-btn">
+          <button className="create-task-btn" onClick={handleOpenModal}>
             Crear tarea
             <AddTask />
           </button>
@@ -81,10 +133,16 @@ export const ScreenSprint = () => {
                     {task.deadline && <div className="task-limit">Límite: {task.deadline}</div>}
                   </div>
                   <div className="task-actions">
-                    <button className="action-btn">
+                    <button 
+                      className="action-btn"
+                      onClick={() => handleMoveToBacklog(task.id)}
+                    >
                       Enviar al Backlog
                     </button>
-                    <button className="action-btn">
+                    <button 
+                      className="action-btn"
+                      onClick={() => handleMoveTask(task.id, 'in-progress')}
+                    >
                       Mover a En Progreso
                     </button>
                   </div>
@@ -94,10 +152,18 @@ export const ScreenSprint = () => {
                   <button className="action-btn" title="Ver">
                     <Visibility />
                   </button>
-                  <button className="action-btn" title="Editar">
+                  <button 
+                    className="action-btn" 
+                    title="Editar"
+                    onClick={() => handleEditTask(task.id)}
+                  >
                     <Edit />
                   </button>
-                  <button className="action-btn" title="Eliminar">
+                  <button 
+                    className="action-btn" 
+                    title="Eliminar"
+                    onClick={() => handleDeleteTask(task.id)}
+                  >
                     <Delete />
                   </button>
                 </div>
@@ -123,10 +189,16 @@ export const ScreenSprint = () => {
                     {task.deadline && <div className="task-limit">Límite: {task.deadline}</div>}
                   </div>
                   <div className="task-actions">
-                    <button className="action-btn">
+                    <button 
+                      className="action-btn"
+                      onClick={() => handleMoveTask(task.id, 'pending')}
+                    >
                       Mover a Pendiente
                     </button>
-                    <button className="action-btn">
+                    <button 
+                      className="action-btn"
+                      onClick={() => handleMoveTask(task.id, 'completed')}
+                    >
                       Mover a Completado
                     </button>
                   </div>
@@ -136,10 +208,18 @@ export const ScreenSprint = () => {
                   <button className="action-btn" title="Ver">
                     <Visibility />
                   </button>
-                  <button className="action-btn" title="Editar">
+                  <button 
+                    className="action-btn" 
+                    title="Editar"
+                    onClick={() => handleEditTask(task.id)}
+                  >
                     <Edit />
                   </button>
-                  <button className="action-btn" title="Eliminar">
+                  <button 
+                    className="action-btn" 
+                    title="Eliminar"
+                    onClick={() => handleDeleteTask(task.id)}
+                  >
                     <Delete />
                   </button>
                 </div>
@@ -157,23 +237,45 @@ export const ScreenSprint = () => {
             {getCompletedTasks().map(task => (
               <div key={task.id} className="task-card">
                 <div className="task-content">
-                  <div className="task-header">
-                    <span className="task-title">Título: {task.title}</span>
+                  <div>
+                    <div className="task-header">
+                      <span className="task-title">Título: {task.title}</span>
+                    </div>
+                    <span className="task-description">Descripción: {task.description}</span>
+                    {task.deadline && <div className="task-limit">Límite: {task.deadline}</div>}
                   </div>
-                  <span className="task-description">Descripción: {task.description}</span>
-                  {task.deadline && <span className="task-limit">Límite: {task.deadline}</span>}
+                  <div className="task-actions">
+                    <button 
+                      className="action-btn"
+                      onClick={() => handleMoveTask(task.id, 'in-progress')}
+                    >
+                      Mover a En Progreso
+                    </button>
+                    <button 
+                      className="action-btn"
+                      onClick={() => handleMoveToBacklog(task.id)}
+                    >
+                      Enviar al Backlog
+                    </button>
+                  </div>
                 </div>
-                <div className="task-actions">
-                  <button className="action-btn">
-                    Mover a En Progreso
-                  </button>
+
+                <div className='task-actions-vertical'>
                   <button className="action-btn" title="Ver">
                     <Visibility />
                   </button>
-                  <button className="action-btn" title="Editar">
+                  <button 
+                    className="action-btn" 
+                    title="Editar"
+                    onClick={() => handleEditTask(task.id)}
+                  >
                     <Edit />
                   </button>
-                  <button className="action-btn" title="Eliminar">
+                  <button 
+                    className="action-btn" 
+                    title="Eliminar"
+                    onClick={() => handleDeleteTask(task.id)}
+                  >
                     <Delete />
                   </button>
                 </div>
@@ -185,6 +287,7 @@ export const ScreenSprint = () => {
           </div>
         </div>
       </div>
+      {showModal && <Modal handleCloseModal={handleCloseModal} sprintId={sprintId} />}
     </div>
   );
 }; 
