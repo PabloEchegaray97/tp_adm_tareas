@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Add } from '@mui/icons-material';
 import './SprintSelector.css';
 import { useSprintStore } from '../../../store';
 import { SprintModal } from '../SprintModal/SprintModal';
@@ -20,9 +19,6 @@ export const SprintSelector: React.FC<SprintSelectorProps> = ({
     fetchSprints();
   }, [fetchSprints]);
 
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -51,13 +47,6 @@ export const SprintSelector: React.FC<SprintSelectorProps> = ({
         ))}
       </select>
       
-      <button 
-        className="create-sprint-btn"
-        onClick={handleOpenModal}
-        title="Crear nuevo sprint"
-      >
-        <Add />
-      </button>
 
       {showModal && <SprintModal handleCloseModal={handleCloseModal} />}
     </div>
