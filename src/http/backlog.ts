@@ -28,3 +28,29 @@ export const createBacklogTask = async (task: ITask): Promise<ITask> => {
     throw error;
   }
 }; 
+
+export const updateBacklogTask = async (task: ITask): Promise<ITask> => {
+  try {
+    const response = await axios.put(`${API_URL}/${task.id}`, task);
+    return response.data;
+  } catch (error) {
+    console.log(
+      "Error al actualizar tarea en el backlog.",
+      error
+    );
+    throw error;
+  }
+};
+
+export const deleteBacklogTask = async (taskId: string): Promise<void> => {
+  try {
+    await axios.delete(`${API_URL}/${taskId}`);
+  } catch (error) {
+    console.log(
+      "Error al eliminar tarea en el backlog.",
+      error
+    );
+    throw error;
+  }
+};
+

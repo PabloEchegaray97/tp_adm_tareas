@@ -2,24 +2,9 @@
   "backlog": [
     {
       "id": "backlog-1744705309897",
-      "title": "Diseñar panel de administración",
+      "title": "Diseñar panel de administraciónx",
       "description": "Maquetar la interfaz del panel de control para administradores.",
       "deadline": "2025-05-08",
-      "createdAt": "2025-04-15"
-    },
-    {
-      "id": "backlog-1744705319962",
-      "title": "test",
-      "description": "test",
-      "deadline": "2025-04-15",
-      "createdAt": "2025-04-15"
-    },
-    {
-      "id": "backlog-1744705330612",
-      "title": "test22",
-      "description": "test22",
-      "deadline": "2025-04-15",
-      "status": "pending",
       "createdAt": "2025-04-15"
     }
   ],
@@ -93,6 +78,13 @@
           "deadline": "2025-04-15",
           "id": "task-1744705119617",
           "status": "completed"
+        },
+        {
+          "title": "test",
+          "description": "test",
+          "deadline": "2025-04-15",
+          "id": "task-1744810828387",
+          "status": "pending"
         }
       ]
     },
@@ -101,7 +93,15 @@
       "title": "test",
       "startDate": "2025-04-15",
       "closingDate": "2025-04-16",
-      "tasks": []
+      "tasks": [
+        {
+          "title": "12345678",
+          "description": "23456789",
+          "deadline": "2025-04-16",
+          "id": "task-1744811185368",
+          "status": "completed"
+        }
+      ]
     }
   ]
 }

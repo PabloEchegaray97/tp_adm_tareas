@@ -1,8 +1,6 @@
 import { create } from 'zustand';
 import { ITask } from '../types/ITask';
-import axios from 'axios';
-
-const API_URL = "http://localhost:3000/backlog";
+import { createBacklogTask, deleteBacklogTask, getBacklogTasks, updateBacklogTask } from '../http/backlog';
 
 interface TaskState {
   tasks: ITask[];
@@ -38,10 +36,10 @@ export const useTaskStore = create<TaskState>((set) => ({
         createdAt: new Date().toISOString().split('T')[0],
       };
       
-      const response = await axios.post(API_URL, newTask);
+      await createBacklogTask(newTask);
       
       set((state) => ({
-        tasks: [...state.tasks, response.data],
+        tasks: [...state.tasks, newTask],
         isLoading: false
       }));
     } catch (error) {
@@ -57,7 +55,7 @@ export const useTaskStore = create<TaskState>((set) => ({
   updateTask: async (task) => {
     set({ isLoading: true, error: null });
     try {
-      await axios.put(`${API_URL}/${task.id}`, task);
+      await updateBacklogTask(task);
       
       set((state) => ({
         tasks: state.tasks.map((t) => (t.id === task.id ? task : t)),
@@ -76,7 +74,7 @@ export const useTaskStore = create<TaskState>((set) => ({
   deleteTask: async (id) => {
     set({ isLoading: true, error: null });
     try {
-      await axios.delete(`${API_URL}/${id}`);
+      await deleteBacklogTask(id);
       
       set((state) => ({
         tasks: state.tasks.filter((task) => task.id !== id),
@@ -95,8 +93,8 @@ export const useTaskStore = create<TaskState>((set) => ({
   fetchTasks: async () => {
     set({ isLoading: true, error: null });
     try {
-      const response = await axios.get<ITask[]>(API_URL);
-      set({ tasks: response.data, isLoading: false });
+      const tasks = await getBacklogTasks();
+      set({ tasks, isLoading: false });
     } catch (error) {
       console.error('Error al obtener tareas:', error);
       set({ 

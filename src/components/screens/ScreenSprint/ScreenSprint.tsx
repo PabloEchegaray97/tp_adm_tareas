@@ -12,7 +12,6 @@ export const ScreenSprint = () => {
   
   const { 
     currentSprint: sprint, 
-    isLoading: loading, 
     error,
     fetchSprintById,
     moveTask,
@@ -96,10 +95,6 @@ export const ScreenSprint = () => {
       }
     }
   };
-
-  if (loading) {
-    return <div className="screen-sprint loading">Cargando información del sprint...</div>;
-  }
 
   if (error || !sprint) {
     return <div className="screen-sprint error">{error || 'Sprint no encontrado'}</div>;
