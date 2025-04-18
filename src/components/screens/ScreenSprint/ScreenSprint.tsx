@@ -29,15 +29,15 @@ export const ScreenSprint = () => {
 
   // Filtrar tareas por estado
   const getPendingTasks = (): ITask[] => {
-    return sprint?.tasks.filter(task => task.status === 'pending') || [];
+    return sprint?.tareas.filter(task => task.estado === 'pendiente') || [];
   };
 
   const getInProgressTasks = (): ITask[] => {
-    return sprint?.tasks.filter(task => task.status === 'in-progress') || [];
+    return sprint?.tareas.filter(task => task.estado === 'en-progreso') || [];
   };
 
   const getCompletedTasks = (): ITask[] => {
-    return sprint?.tasks.filter(task => task.status === 'completed') || [];
+    return sprint?.tareas.filter(task => task.estado === 'completado') || [];
   };
 
   const handleOpenModal = () => {
@@ -52,7 +52,7 @@ export const ScreenSprint = () => {
   const handleEditTask = (taskId: string) => {
     if (!sprint) return;
     
-    const task = sprint.tasks.find(t => t.id === taskId);
+    const task = sprint.tareas.find(t => t.id === taskId);
     if (task) {
       setActiveTask(task);
       setShowModal(true);
@@ -72,7 +72,7 @@ export const ScreenSprint = () => {
     }
   };
   
-  const handleMoveTask = async (taskId: string, newStatus: 'pending' | 'in-progress' | 'completed') => {
+  const handleMoveTask = async (taskId: string, newStatus: 'pendiente' | 'en-progreso' | 'completado') => {
     if (!sprintId) return;
     
     try {
@@ -103,9 +103,9 @@ export const ScreenSprint = () => {
   return (
     <div className="screen-sprint">
       <div className="sprint-header">
-        <h1>Sprint: {sprint.title}</h1>
+        <h1>Sprint: {sprint.nombre}</h1>
         <div className="header-actions">
-          <span>Fecha de inicio: {sprint.startDate} - Fecha de cierre: {sprint.closingDate}</span>
+          <span>Fecha de inicio: {sprint.fechaInicio} - Fecha de cierre: {sprint.fechaCierre}</span>
           <button className="create-task-btn" onClick={handleOpenModal}>
             Crear tarea
             <AddTask />
@@ -122,10 +122,10 @@ export const ScreenSprint = () => {
                 <div className="task-content">
                   <div>
                     <div className="task-header">
-                      <span className="task-title">Título: {task.title}</span>
+                      <span className="task-title">Título: {task.titulo}</span>
                     </div>
-                    <span className="task-description">Descripción: {task.description}</span>
-                    {task.deadline && <div className="task-limit">Límite: {task.deadline}</div>}
+                    <span className="task-description">Descripción: {task.descripcion}</span>
+                    {task.fechaLimite && <div className="task-limit">Límite: {task.fechaLimite}</div>}
                   </div>
                   <div className="task-actions">
                     <button 
@@ -136,7 +136,7 @@ export const ScreenSprint = () => {
                     </button>
                     <button 
                       className="action-btn"
-                      onClick={() => handleMoveTask(task.id, 'in-progress')}
+                      onClick={() => handleMoveTask(task.id, 'en-progreso')}
                     >
                       Mover a En Progreso
                     </button>
@@ -178,21 +178,21 @@ export const ScreenSprint = () => {
                 <div className="task-content">
                   <div>
                     <div className="task-header">
-                      <span className="task-title">Título: {task.title}</span>
+                      <span className="task-title">Título: {task.titulo}</span>
                     </div>
-                    <span className="task-description">Descripción: {task.description}</span>
-                    {task.deadline && <div className="task-limit">Límite: {task.deadline}</div>}
+                    <span className="task-description">Descripción: {task.descripcion}</span>
+                    {task.fechaLimite && <div className="task-limit">Límite: {task.fechaLimite}</div>}
                   </div>
                   <div className="task-actions">
                     <button 
                       className="action-btn"
-                      onClick={() => handleMoveTask(task.id, 'pending')}
+                      onClick={() => handleMoveTask(task.id, 'pendiente')}
                     >
                       Mover a Pendiente
                     </button>
                     <button 
                       className="action-btn"
-                      onClick={() => handleMoveTask(task.id, 'completed')}
+                      onClick={() => handleMoveTask(task.id, 'completado')}
                     >
                       Mover a Completado
                     </button>
@@ -234,15 +234,15 @@ export const ScreenSprint = () => {
                 <div className="task-content">
                   <div>
                     <div className="task-header">
-                      <span className="task-title">Título: {task.title}</span>
+                      <span className="task-title">Título: {task.titulo}</span>
                     </div>
-                    <span className="task-description">Descripción: {task.description}</span>
-                    {task.deadline && <div className="task-limit">Límite: {task.deadline}</div>}
+                    <span className="task-description">Descripción: {task.descripcion}</span>
+                    {task.fechaLimite && <div className="task-limit">Límite: {task.fechaLimite}</div>}
                   </div>
                   <div className="task-actions">
                     <button 
                       className="action-btn"
-                      onClick={() => handleMoveTask(task.id, 'in-progress')}
+                      onClick={() => handleMoveTask(task.id, 'en-progreso')}
                     >
                       Mover a En Progreso
                     </button>

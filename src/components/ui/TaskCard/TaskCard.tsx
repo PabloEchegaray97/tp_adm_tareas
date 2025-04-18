@@ -4,9 +4,9 @@ import { Share, Visibility, Edit, Delete } from "@mui/icons-material";
 import { SprintSelector } from "../SprintSelector/SprintSelector";
 
 interface TaskCardProps {
-  title: string;
-  description: string;
-  createdAt?: string;
+  titulo: string;
+  descripcion: string;
+  fechaLimite?: string;
   onEditClick?: () => void;
   onDeleteClick?: () => void;
   onViewClick?: () => void;
@@ -14,9 +14,9 @@ interface TaskCardProps {
 }
 
 export const TaskCard: React.FC<TaskCardProps> = ({ 
-  title, 
-  description, 
-  createdAt,
+  titulo, 
+  descripcion, 
+  fechaLimite,
   onEditClick,
   onDeleteClick,
   onViewClick,
@@ -39,9 +39,9 @@ export const TaskCard: React.FC<TaskCardProps> = ({
   return (
     <div className="task-card">
       <div className="task-content">
-        <span className="task-title">Título: {title}</span>
-        <span className="task-description">Descripción: {description}</span>
-        {createdAt && <span className="task-created-at">Creado: {createdAt}</span>}
+        <span className="task-title">Título: {titulo}</span>
+        <span className="task-description">Descripción: {descripcion}</span>
+        {fechaLimite && <span className="task-created-at">Creado: {fechaLimite}</span>}
       </div>
       <div className="task-actions">
         <div className="sprint-selector-wrapper">

@@ -8,15 +8,15 @@ type IModal = {
 };
 
 interface ITaskForm {
-  title: string;
-  description: string;
-  deadline: string;
+  titulo: string;
+  descripcion: string;
+  fechaLimite: string;
 }
 
 const initialState: ITaskForm = {
-  title: "",
-  description: "",
-  deadline: "",
+  titulo: "",
+  descripcion: "",
+  fechaLimite: "",
 };
 
 export const Modal: FC<IModal> = ({ handleCloseModal, sprintId }) => {
@@ -25,9 +25,9 @@ export const Modal: FC<IModal> = ({ handleCloseModal, sprintId }) => {
   const [formValues, setFormValues] = useState<ITaskForm>(
     activeTask 
       ? { 
-          title: activeTask.title, 
-          description: activeTask.description, 
-          deadline: activeTask.deadline || "" 
+          titulo: activeTask.titulo, 
+          descripcion: activeTask.descripcion, 
+          fechaLimite: activeTask.fechaLimite || "" 
         } 
       : initialState
   );
@@ -50,35 +50,35 @@ export const Modal: FC<IModal> = ({ handleCloseModal, sprintId }) => {
         // Si estamos editando una tarea dentro de un sprint
         if (sprintId) {
           await updateSprintTask(sprintId, activeTask.id, {
-            title: formValues.title,
-            description: formValues.description,
-            deadline: formValues.deadline
+            titulo: formValues.titulo,
+            descripcion: formValues.descripcion,
+            fechaLimite: formValues.fechaLimite
           });
         } else {
           // Si estamos editando una tarea del backlog
           await updateBacklogTask({
             ...activeTask,
-            title: formValues.title,
-            description: formValues.description,
-            deadline: formValues.deadline,
+            titulo: formValues.titulo,
+            descripcion: formValues.descripcion,
+            fechaLimite: formValues.fechaLimite,
           });
         }
       } 
       // Si estamos creando una tarea en un sprint específico
       else if (sprintId) {
         await addTask(sprintId, {
-          title: formValues.title,
-          description: formValues.description,
-          deadline: formValues.deadline,
+          titulo: formValues.titulo,
+          descripcion: formValues.descripcion,
+          fechaLimite: formValues.fechaLimite,
         });
       } 
       // Si estamos creando una tarea en el backlog
       else {
         await createTask({
-          title: formValues.title,
-          description: formValues.description,
-          deadline: formValues.deadline,
-          status: 'pending'
+          titulo: formValues.titulo,
+          descripcion: formValues.descripcion,
+          fechaLimite: formValues.fechaLimite,
+          estado: 'pendiente'
         });
       }
       
@@ -110,9 +110,9 @@ export const Modal: FC<IModal> = ({ handleCloseModal, sprintId }) => {
                   type="text"
                   required
                   onChange={handleChange}
-                  value={formValues.title}
+                  value={formValues.titulo}
                   autoComplete="off"
-                  name="title"
+                  name="titulo"
                 />
               </div>
               <div className={styles.inputContainerItem}>
@@ -123,9 +123,9 @@ export const Modal: FC<IModal> = ({ handleCloseModal, sprintId }) => {
                   type="date"
                   required
                   onChange={handleChange}
-                  value={formValues.deadline}
+                  value={formValues.fechaLimite}
                   autoComplete="off"
-                  name="deadline"
+                  name="fechaLimite"
                 />
               </div>
             </div>
@@ -136,11 +136,11 @@ export const Modal: FC<IModal> = ({ handleCloseModal, sprintId }) => {
               placeholder="Ingrese una descripción"
               required
               onChange={handleChange}
-              value={formValues.description}
-              name="description"
+              value={formValues.descripcion}
+              name="descripcion"
               id=""
               className={styles.textArea}
-              cols={30}
+              rows={5}
             ></textarea>
 
           </div>

@@ -61,11 +61,12 @@ export const ScreenBacklog = () => {
         return;
       }
 
-      // Añadir la tarea al sprint
+      // Añadir la tarea al sprint con estado "pendiente"
       await addTaskToSprint(sprintId, {
-        title: task.title,
-        description: task.description,
-        deadline: task.deadline || '',
+        titulo: task.titulo,
+        descripcion: task.descripcion,
+        fechaLimite: task.fechaLimite || '',
+        estado: 'pendiente'
       });
 
       // Si todo va bien, eliminar la tarea del backlog
@@ -102,9 +103,9 @@ export const ScreenBacklog = () => {
             backlogTasks.map((task) => (
               <TaskCard 
                 key={task.id} 
-                title={task.title} 
-                description={task.description}
-                createdAt={task.createdAt}
+                titulo={task.titulo} 
+                descripcion={task.descripcion}
+                fechaLimite={task.fechaLimite}
                 onEditClick={() => handleEditTask(task.id)}
                 onDeleteClick={() => handleDeleteTask(task.id)}
                 onSendToSprint={(sprintId) => handleSendToSprint(task.id, sprintId)}

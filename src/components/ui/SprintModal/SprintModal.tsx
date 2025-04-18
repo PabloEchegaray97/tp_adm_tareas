@@ -9,15 +9,15 @@ type ISprintModal = {
 };
 
 interface ISprintForm {
-  title: string;
-  startDate: string;
-  closingDate: string;
+  nombre: string;
+  fechaInicio: string;
+  fechaCierre: string;
 }
 
 const initialState: ISprintForm = {
-  title: "",
-  startDate: "",
-  closingDate: "",
+  nombre: "",
+  fechaInicio: "",
+  fechaCierre: "",
 };
 
 export const SprintModal: FC<ISprintModal> = ({ handleCloseModal, activeSprint }) => {
@@ -25,9 +25,9 @@ export const SprintModal: FC<ISprintModal> = ({ handleCloseModal, activeSprint }
   const [formValues, setFormValues] = useState<ISprintForm>(
     activeSprint 
       ? { 
-          title: activeSprint.title, 
-          startDate: activeSprint.startDate, 
-          closingDate: activeSprint.closingDate 
+          nombre: activeSprint.nombre, 
+          fechaInicio: activeSprint.fechaInicio, 
+          fechaCierre: activeSprint.fechaCierre 
         } 
       : initialState
   );
@@ -46,10 +46,10 @@ export const SprintModal: FC<ISprintModal> = ({ handleCloseModal, activeSprint }
     
     try {
       // Validar que la fecha de cierre sea posterior a la fecha de inicio
-      const startDate = new Date(formValues.startDate);
-      const closingDate = new Date(formValues.closingDate);
+      const fechaInicio = new Date(formValues.fechaInicio);
+      const fechaCierre = new Date(formValues.fechaCierre);
       
-      if (closingDate <= startDate) {
+      if (fechaCierre <= fechaInicio) {
         alert("La fecha de cierre debe ser posterior a la fecha de inicio");
         setIsSubmitting(false);
         return;
@@ -58,16 +58,16 @@ export const SprintModal: FC<ISprintModal> = ({ handleCloseModal, activeSprint }
       if (activeSprint) {
         await updateSprint({
           ...activeSprint,
-          title: formValues.title,
-          startDate: formValues.startDate,
-          closingDate: formValues.closingDate,
+          nombre: formValues.nombre,
+          fechaInicio: formValues.fechaInicio,
+          fechaCierre: formValues.fechaCierre,
         });
       } else {
         await createSprint({
-          title: formValues.title,
-          startDate: formValues.startDate,
-          closingDate: formValues.closingDate,
-          tasks: []
+          nombre: formValues.nombre,
+          fechaInicio: formValues.fechaInicio,
+          fechaCierre: formValues.fechaCierre,
+          tareas: []
         });
       }
       
@@ -97,9 +97,9 @@ export const SprintModal: FC<ISprintModal> = ({ handleCloseModal, activeSprint }
                 type="text"
                 required
                 onChange={handleChange}
-                value={formValues.title}
+                value={formValues.nombre}
                 autoComplete="off"
-                name="title"
+                name="nombre"
               />
             </div>
             
@@ -112,9 +112,9 @@ export const SprintModal: FC<ISprintModal> = ({ handleCloseModal, activeSprint }
                   type="date"
                   required
                   onChange={handleChange}
-                  value={formValues.startDate}
+                  value={formValues.fechaInicio}
                   autoComplete="off"
-                  name="startDate"
+                  name="fechaInicio"
                 />
               </div>
               <div className={styles.inputContainerItem}>
@@ -125,9 +125,9 @@ export const SprintModal: FC<ISprintModal> = ({ handleCloseModal, activeSprint }
                   type="date"
                   required
                   onChange={handleChange}
-                  value={formValues.closingDate}
+                  value={formValues.fechaCierre}
                   autoComplete="off"
-                  name="closingDate"
+                  name="fechaCierre"
                 />
               </div>
             </div>

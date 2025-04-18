@@ -33,7 +33,6 @@ export const useTaskStore = create<TaskState>((set) => ({
       const newTask: ITask = {
         ...taskData,
         id: `backlog-${Date.now()}`,
-        createdAt: new Date().toISOString().split('T')[0],
       };
       
       await createBacklogTask(newTask);

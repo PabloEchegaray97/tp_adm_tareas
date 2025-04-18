@@ -1,107 +1,118 @@
 {
-  "backlog": [
-    {
-      "id": "backlog-1744705309897",
-      "title": "Diseñar panel de administraciónx",
-      "description": "Maquetar la interfaz del panel de control para administradores.",
-      "deadline": "2025-05-08",
-      "createdAt": "2025-04-15"
-    }
-  ],
-  "sprints": [
-    {
-      "id": "sprint-001",
-      "title": "Sprint 1",
-      "startDate": "2025-04-01",
-      "closingDate": "2025-04-15",
-      "tasks": [
-        {
-          "id": "task-001",
-          "title": "Configurar el entorno de desarrollo",
-          "description": "Instalar dependencias y configurar el proyecto en local.",
-          "status": "completed",
-          "deadline": "2025-04-03"
-        },
-        {
-          "id": "task-002",
-          "title": "Diseñar la página de inicio",
-          "description": "Crear el diseño de la landing page según el prototipo de Figma.",
-          "status": "in-progress",
-          "deadline": "2025-04-08"
-        },
-        {
-          "id": "task-003",
-          "title": "Implementar autenticación",
-          "description": "Configurar el login y registro con Firebase Authentication.",
-          "status": "completed",
-          "deadline": "2025-04-12"
-        },
-        {
-          "title": "Implementar sistema de notificaciones",
-          "description": "Crear un sistema de notificaciones para alertar a los usuarios sobre cambios en las tareas.",
-          "deadline": "2025-04-15",
-          "id": "task-1744706055142",
-          "status": "pending"
-        },
-        {
-          "title": "Optimizar rendimiento de carga",
-          "description": "Mejorar el tiempo de carga de la aplicación reduciendo el tamaño de los bundles.",
-          "deadline": "",
-          "id": "task-1744706717375",
-          "status": "pending"
-        }
-      ]
-    },
-    {
-      "id": "sprint-002",
-      "title": "Sprint 2",
-      "startDate": "2025-05-01",
-      "closingDate": "2025-05-12",
-      "tasks": [
-        {
-          "id": "task-004",
-          "title": "Desarrollar API de usuarios",
-          "description": "Crear endpoints para gestión de perfiles de usuario.",
-          "status": "in-progress",
-          "deadline": "2025-05-05"
-        },
-        {
-          "id": "task-006",
-          "title": "Implementar sistema de roles",
-          "description": "Configurar permisos y roles de usuarios en el sistema.",
-          "status": "pending",
-          "deadline": "2025-05-10"
-        },
-        {
-          "title": "test2",
-          "description": "s22123",
-          "deadline": "2025-04-15",
-          "id": "task-1744705119617",
-          "status": "completed"
-        },
-        {
-          "title": "test",
-          "description": "test",
-          "deadline": "2025-04-15",
-          "id": "task-1744810828387",
-          "status": "pending"
-        }
-      ]
-    },
-    {
-      "id": "sprint-1744707486070",
-      "title": "test",
-      "startDate": "2025-04-15",
-      "closingDate": "2025-04-16",
-      "tasks": [
-        {
-          "title": "12345678",
-          "description": "23456789",
-          "deadline": "2025-04-16",
-          "id": "task-1744811185368",
-          "status": "completed"
-        }
-      ]
-    }
-  ]
+  "backlog": {
+    "tareas": [
+      {
+        "id": "backlog-1744705309897",
+        "titulo": "Diseñar panel de administraciónx",
+        "descripcion": "Maquetar la interfaz del panel de control para administradores.",
+        "estado": "pendiente",
+        "fechaLimite": "2025-04-15"
+      },
+      {
+        "titulo": "TEST",
+        "descripcion": "TEST",
+        "fechaLimite": "2025-04-18",
+        "estado": "pendiente",
+        "id": "backlog-1744963345271"
+      }
+    ]
+  },
+  "sprintList": {
+    "sprints": [
+      {
+        "id": "sprint-001",
+        "nombre": "Sprint 1",
+        "fechaInicio": "2025-04-01",
+        "fechaCierre": "2025-04-15",
+        "tareas": [
+          {
+            "id": "task-001",
+            "titulo": "Configurar el entorno de desarrollo",
+            "descripcion": "Instalar dependencias y configurar el proyecto en local.",
+            "estado": "completado",
+            "fechaLimite": "2025-04-03"
+          },
+          {
+            "id": "task-002",
+            "titulo": "Diseñar la página de inicio",
+            "descripcion": "Crear el diseño de la landing page según el prototipo de Figma.",
+            "estado": "en-progreso",
+            "fechaLimite": "2025-04-08"
+          },
+          {
+            "id": "task-003",
+            "titulo": "Implementar autenticación",
+            "descripcion": "Configurar el login y registro con Firebase Authentication.",
+            "estado": "completado",
+            "fechaLimite": "2025-04-12"
+          },
+          {
+            "id": "task-004",
+            "titulo": "Implementar sistema de notificaciones",
+            "descripcion": "Crear un sistema de notificaciones para alertar a los usuarios sobre cambios en las tareas.",
+            "fechaLimite": "2025-04-15",
+            "estado": "pendiente"
+          },
+          {
+            "id": "task-005",
+            "titulo": "Optimizar rendimiento de carga",
+            "descripcion": "Mejorar el tiempo de carga de la aplicación reduciendo el tamaño de los bundles.",
+            "fechaLimite": "2025-04-15",
+            "estado": "pendiente"
+          }
+        ]
+      },
+      {
+        "id": "sprint-002",
+        "nombre": "Sprint 2",
+        "fechaInicio": "2025-05-01",
+        "fechaCierre": "2025-05-12",
+        "tareas": [
+          {
+            "id": "task-004",
+            "titulo": "Desarrollar API de usuarios",
+            "descripcion": "Crear endpoints para gestión de perfiles de usuario.",
+            "estado": "en-progreso",
+            "fechaLimite": "2025-05-05"
+          },
+          {
+            "id": "task-006",
+            "titulo": "Implementar sistema de roles",
+            "descripcion": "Configurar permisos y roles de usuarios en el sistema.",
+            "estado": "pendiente",
+            "fechaLimite": "2025-05-10"
+          },
+          {
+            "id": "task-007",
+            "titulo": "test",
+            "descripcion": "test",
+            "fechaLimite": "2025-04-15",
+            "estado": "completado"
+          },
+          {
+            "id": "task-008",
+            "titulo": "test",
+            "descripcion": "test",
+            "fechaLimite": "2025-04-15",
+            "estado": "pendiente"
+          }
+        ]
+      },
+      {
+        "nombre": "TEST",
+        "fechaInicio": "2025-04-18",
+        "fechaCierre": "2025-04-28",
+        "tareas": [
+          {
+            "titulo": "tareaprueba xd",
+            "descripcion": "tarea prueba",
+            "fechaLimite": "2025-04-18",
+            "estado": "completado",
+            "id": "task-1744964074242"
+          }
+        ],
+        "id": "sprint-1744963361021"
+      }
+    ]
+  }
 }

@@ -1,11 +1,8 @@
 import { create } from 'zustand';
 import { ISprint } from '../types/ISprint';
 import { ITask } from '../types/ITask';
-import { getAllSprints, getSprintById, updateSprint as updateSprintAPI, addTaskToSprint } from '../http/sprint';
+import { getAllSprints, getSprintById, updateSprint as updateSprintAPI, addTaskToSprint, createSprint as createSprintAPI, deleteSprint as deleteSprintAPI } from '../http/sprint';
 import { createBacklogTask } from '../http/backlog';
-import axios from 'axios';
-
-const API_URL = "http://localhost:3000/sprints";
 
 interface SprintState {
   sprints: ISprint[];
@@ -21,7 +18,7 @@ interface SprintState {
   addTask: (sprintId: string, task: Omit<ITask, 'id'>) => Promise<void>;
   updateTask: (sprintId: string, taskId: string, taskData: Partial<ITask>) => Promise<void>;
   deleteTask: (sprintId: string, taskId: string) => Promise<void>;
-  moveTask: (sprintId: string, taskId: string, newStatus: 'pending' | 'in-progress' | 'completed') => Promise<void>;
+  moveTask: (sprintId: string, taskId: string, newStatus: 'pendiente' | 'en-progreso' | 'completado') => Promise<void>;
   moveTaskToBacklog: (sprintId: string, taskId: string) => Promise<void>;
   createSprint: (sprint: Omit<ISprint, 'id'>) => Promise<void>;
   updateSprint: (sprint: ISprint) => Promise<void>;
@@ -75,10 +72,11 @@ export const useSprintStore = create<SprintState>((set, get) => ({
       const newTask: ITask = {
         ...taskData,
         id: `task-${Date.now()}`,
-        status: 'pending'
+        // Solo asignar el estado si no viene definido ya
+        estado: taskData.estado || 'pendiente'
       };
       
-      // Añadir la tarea al sprint
+      // Añadir la tarea al sprint asegurando que se use el array "tareas"
       const updatedSprint = await addTaskToSprint(sprintId, newTask);
       
       // Actualizar el estado
@@ -106,12 +104,12 @@ export const useSprintStore = create<SprintState>((set, get) => ({
       if (!currentSprint) throw new Error('No hay sprint seleccionado');
       
       // Encontrar y actualizar la tarea
-      const updatedTasks = currentSprint.tasks.map((task) => 
+      const updatedTasks = currentSprint.tareas.map((task) => 
         task.id === taskId ? { ...task, ...taskData } : task
       );
       
       // Actualizar el sprint con las tareas actualizadas
-      const updatedSprint = { ...currentSprint, tasks: updatedTasks };
+      const updatedSprint = { ...currentSprint, tareas: updatedTasks };
       await updateSprintAPI(updatedSprint);
       
       // Actualizar el estado
@@ -139,10 +137,10 @@ export const useSprintStore = create<SprintState>((set, get) => ({
       if (!currentSprint) throw new Error('No hay sprint seleccionado');
       
       // Filtrar la tarea a eliminar
-      const updatedTasks = currentSprint.tasks.filter(task => task.id !== taskId);
+      const updatedTasks = currentSprint.tareas.filter(task => task.id !== taskId);
       
       // Actualizar el sprint sin la tarea eliminada
-      const updatedSprint = { ...currentSprint, tasks: updatedTasks };
+      const updatedSprint = { ...currentSprint, tareas: updatedTasks };
       await updateSprintAPI(updatedSprint);
       
       // Actualizar el estado
@@ -170,12 +168,12 @@ export const useSprintStore = create<SprintState>((set, get) => ({
       if (!currentSprint) throw new Error('No hay sprint seleccionado');
       
       // Actualizar el estado de la tarea
-      const updatedTasks = currentSprint.tasks.map((task) => 
-        task.id === taskId ? { ...task, status: newStatus } : task
+      const updatedTasks = currentSprint.tareas.map((task) => 
+        task.id === taskId ? { ...task, estado: newStatus } : task
       );
       
       // Actualizar el sprint con las tareas actualizadas
-      const updatedSprint = { ...currentSprint, tasks: updatedTasks };
+      const updatedSprint = { ...currentSprint, tareas: updatedTasks };
       await updateSprintAPI(updatedSprint);
       
       // Actualizar el estado
@@ -203,24 +201,23 @@ export const useSprintStore = create<SprintState>((set, get) => ({
       if (!currentSprint) throw new Error('No hay sprint seleccionado');
       
       // Encontrar la tarea que queremos mover al backlog
-      const taskToMove = currentSprint.tasks.find(task => task.id === taskId);
+      const taskToMove = currentSprint.tareas.find(task => task.id === taskId);
       if (!taskToMove) throw new Error('Tarea no encontrada');
       
       // Crear una versión de la tarea para el backlog con un nuevo ID
       const backlogTask: ITask = {
         id: `backlog-${Date.now()}`,
-        title: taskToMove.title,
-        description: taskToMove.description,
-        deadline: taskToMove.deadline,
-        createdAt: new Date().toISOString().split('T')[0],
+        titulo: taskToMove.titulo,
+        descripcion: taskToMove.descripcion,
+        fechaLimite: taskToMove.fechaLimite,
       };
       
       // Añadir la tarea al backlog
       await createBacklogTask(backlogTask);
       
       // Eliminar la tarea del sprint
-      const updatedTasks = currentSprint.tasks.filter(task => task.id !== taskId);
-      const updatedSprint = { ...currentSprint, tasks: updatedTasks };
+      const updatedTasks = currentSprint.tareas.filter(task => task.id !== taskId);
+      const updatedSprint = { ...currentSprint, tareas: updatedTasks };
       await updateSprintAPI(updatedSprint);
       
       // Actualizar el estado
@@ -250,12 +247,12 @@ export const useSprintStore = create<SprintState>((set, get) => ({
         id: `sprint-${Date.now()}`
       };
       
-      // Crear el sprint en la API
-      const response = await axios.post(API_URL, newSprint);
+      // Crear el sprint usando la función de la API
+      const createdSprint = await createSprintAPI(newSprint);
       
       // Actualizar el estado
       set((state) => ({
-        sprints: [...state.sprints, response.data],
+        sprints: [...state.sprints, createdSprint],
         isLoading: false
       }));
     } catch (error) {
@@ -271,17 +268,17 @@ export const useSprintStore = create<SprintState>((set, get) => ({
   updateSprint: async (sprint) => {
     set({ isLoading: true, error: null });
     try {
-      // Actualizar el sprint en la API
-      const response = await axios.put(`${API_URL}/${sprint.id}`, sprint);
+      // Actualizar el sprint usando la función de la API
+      const updatedSprint = await updateSprintAPI(sprint);
       
       // Actualizar el estado
       set((state) => ({
-        sprints: state.sprints.map(s => s.id === sprint.id ? response.data : s),
-        currentSprint: state.currentSprint?.id === sprint.id ? response.data : state.currentSprint,
+        sprints: state.sprints.map(s => s.id === sprint.id ? updatedSprint : s),
+        currentSprint: state.currentSprint?.id === sprint.id ? updatedSprint : state.currentSprint,
         isLoading: false
       }));
     } catch (error) {
-      console.error('Error al actualizar el sprint:', error);
+      console.error('Error al guardar el sprint:', error);
       set({ 
         error: 'No se pudo actualizar el sprint',
         isLoading: false
@@ -293,8 +290,8 @@ export const useSprintStore = create<SprintState>((set, get) => ({
   deleteSprint: async (sprintId) => {
     set({ isLoading: true, error: null });
     try {
-      // Eliminar el sprint de la API
-      await axios.delete(`${API_URL}/${sprintId}`);
+      // Eliminar el sprint usando la función de la API
+      await deleteSprintAPI(sprintId);
       
       // Actualizar el estado
       set((state) => ({

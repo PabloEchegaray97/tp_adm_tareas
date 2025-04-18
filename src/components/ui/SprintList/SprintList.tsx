@@ -45,9 +45,9 @@ const SprintList = () => {
             <SprintListItem
               key={sprint.id}
               sprintId={sprint.id}
-              sprintNumber={sprint.title}
-              startDate={sprint.startDate}
-              endDate={sprint.closingDate}
+              sprintNumber={sprint.nombre}
+              startDate={sprint.fechaInicio}
+              endDate={sprint.fechaCierre}
             />
           ))
         ) : (

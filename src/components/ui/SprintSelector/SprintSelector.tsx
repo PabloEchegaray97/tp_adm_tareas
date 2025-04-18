@@ -42,7 +42,7 @@ export const SprintSelector: React.FC<SprintSelectorProps> = ({
         <option value="">Seleccione un sprint</option>
         {sprints.map(sprint => (
           <option key={sprint.id} value={sprint.id}>
-            {sprint.title}
+            {sprint.nombre}
           </option>
         ))}
       </select>
