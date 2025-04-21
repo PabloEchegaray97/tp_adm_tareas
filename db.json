@@ -1,21 +1,6 @@
 {
   "backlog": {
-    "tareas": [
-      {
-        "id": "backlog-1744705309897",
-        "titulo": "Diseñar panel de administraciónx",
-        "descripcion": "Maquetar la interfaz del panel de control para administradores.",
-        "estado": "pendiente",
-        "fechaLimite": "2025-04-15"
-      },
-      {
-        "titulo": "TEST",
-        "descripcion": "TEST",
-        "fechaLimite": "2025-04-18",
-        "estado": "pendiente",
-        "id": "backlog-1744963345271"
-      }
-    ]
+    "tareas": []
   },
   "sprintList": {
     "sprints": [
@@ -79,22 +64,15 @@
             "id": "task-006",
             "titulo": "Implementar sistema de roles",
             "descripcion": "Configurar permisos y roles de usuarios en el sistema.",
-            "estado": "pendiente",
+            "estado": "completado",
             "fechaLimite": "2025-05-10"
           },
           {
-            "id": "task-007",
-            "titulo": "test",
-            "descripcion": "test",
-            "fechaLimite": "2025-04-15",
-            "estado": "completado"
-          },
-          {
-            "id": "task-008",
-            "titulo": "test",
-            "descripcion": "test",
-            "fechaLimite": "2025-04-15",
-            "estado": "pendiente"
+            "titulo": "Test11",
+            "descripcion": "tess",
+            "fechaLimite": "2025-04-18",
+            "estado": "pendiente",
+            "id": "task-1744965552577"
           }
         ]
       },
@@ -102,16 +80,30 @@
         "nombre": "TEST",
         "fechaInicio": "2025-04-18",
         "fechaCierre": "2025-04-28",
+        "tareas": [],
+        "id": "sprint-1744963361021"
+      },
+      {
+        "nombre": "test",
+        "fechaInicio": "2025-04-18",
+        "fechaCierre": "2025-04-25",
         "tareas": [
           {
-            "titulo": "tareaprueba xd",
-            "descripcion": "tarea prueba",
+            "titulo": "test",
+            "descripcion": "test",
             "fechaLimite": "2025-04-18",
-            "estado": "completado",
-            "id": "task-1744964074242"
+            "id": "task-1744965168246",
+            "estado": "completado"
+          },
+          {
+            "titulo": "xd",
+            "descripcion": "xxas",
+            "fechaLimite": "2025-04-18",
+            "id": "task-1744965394772",
+            "estado": "en-progreso"
           }
         ],
-        "id": "sprint-1744963361021"
+        "id": "sprint-1744965157158"
       }
     ]
   }

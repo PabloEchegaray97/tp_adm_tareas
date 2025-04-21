@@ -2,6 +2,7 @@ import { FC, useState, ChangeEvent, FormEvent } from "react";
 import styles from "../Modal/Modal.module.css";
 import { useSprintStore } from "../../../store";
 import { ISprint } from "../../../types/ISprint";
+import { showAlert } from "../../../utils/sweetAlert";
 
 type ISprintModal = {
   handleCloseModal: VoidFunction;
@@ -50,7 +51,7 @@ export const SprintModal: FC<ISprintModal> = ({ handleCloseModal, activeSprint }
       const fechaCierre = new Date(formValues.fechaCierre);
       
       if (fechaCierre <= fechaInicio) {
-        alert("La fecha de cierre debe ser posterior a la fecha de inicio");
+        showAlert("La fecha de cierre debe ser posterior a la fecha de inicio", "error");
         setIsSubmitting(false);
         return;
       }
@@ -62,6 +63,7 @@ export const SprintModal: FC<ISprintModal> = ({ handleCloseModal, activeSprint }
           fechaInicio: formValues.fechaInicio,
           fechaCierre: formValues.fechaCierre,
         });
+        showAlert(`Sprint "${formValues.nombre}" actualizado correctamente`, "success");
       } else {
         await createSprint({
           nombre: formValues.nombre,
@@ -69,11 +71,13 @@ export const SprintModal: FC<ISprintModal> = ({ handleCloseModal, activeSprint }
           fechaCierre: formValues.fechaCierre,
           tareas: []
         });
+        showAlert(`Sprint "${formValues.nombre}" creado correctamente`, "success");
       }
       
       handleCloseModal();
     } catch (error) {
       console.error("Error al guardar el sprint:", error);
+      showAlert("Ha ocurrido un error al guardar el sprint", "error");
     } finally {
       setIsSubmitting(false);
     }

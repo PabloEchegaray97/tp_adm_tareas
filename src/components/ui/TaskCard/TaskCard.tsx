@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./TaskCard.css";
 import { Share, Visibility, Edit, Delete } from "@mui/icons-material";
 import { SprintSelector } from "../SprintSelector/SprintSelector";
+import { showAlert } from "../../../utils/sweetAlert";
 
 interface TaskCardProps {
   titulo: string;
@@ -32,7 +33,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
     if (selectedSprintId && onSendToSprint) {
       onSendToSprint(selectedSprintId);
     } else {
-      alert("Por favor seleccione un sprint primero");
+      showAlert("Por favor seleccione un sprint primero", "warning");
     }
   };
 

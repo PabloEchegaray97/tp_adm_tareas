@@ -5,6 +5,7 @@ import './ScreenSprint.css';
 import { ITask } from '../../../types/ITask';
 import { Modal } from '../../ui/Modal/Modal';
 import { useTaskStore, useSprintStore } from '../../../store';
+import { showAlert, showConfirm } from '../../../utils/sweetAlert';
 
 export const ScreenSprint = () => {
   const { sprintId } = useParams<{ sprintId: string }>();
@@ -62,12 +63,20 @@ export const ScreenSprint = () => {
   const handleDeleteTask = async (taskId: string) => {
     if (!sprintId) return;
     
-    if (window.confirm('¿Estás seguro de que deseas eliminar esta tarea?')) {
+    const result = await showConfirm(
+      '¿Eliminar tarea?', 
+      '¿Estás seguro de que deseas eliminar esta tarea?',
+      'Sí, eliminar',
+      'Cancelar'
+    );
+    
+    if (result.isConfirmed) {
       try {
         await deleteTask(sprintId, taskId);
+        showAlert('Tarea eliminada correctamente', 'success');
       } catch (error) {
         console.error('Error al eliminar la tarea:', error);
-        alert('No se pudo eliminar la tarea');
+        showAlert('No se pudo eliminar la tarea', 'error');
       }
     }
   };
@@ -79,19 +88,27 @@ export const ScreenSprint = () => {
       await moveTask(sprintId, taskId, newStatus);
     } catch (error) {
       console.error('Error al mover la tarea:', error);
-      alert('No se pudo mover la tarea');
+      showAlert('No se pudo mover la tarea', 'error');
     }
   };
   
   const handleMoveToBacklog = async (taskId: string) => {
     if (!sprintId) return;
     
-    if (window.confirm('¿Estás seguro de que deseas enviar esta tarea al backlog?')) {
+    const result = await showConfirm(
+      '¿Enviar al backlog?', 
+      '¿Estás seguro de que deseas enviar esta tarea al backlog?',
+      'Sí, enviar',
+      'Cancelar'
+    );
+    
+    if (result.isConfirmed) {
       try {
         await moveTaskToBacklog(sprintId, taskId);
+        showAlert('Tarea enviada al backlog correctamente', 'success');
       } catch (error) {
         console.error('Error al mover la tarea al backlog:', error);
-        alert('No se pudo mover la tarea al backlog');
+        showAlert('No se pudo mover la tarea al backlog', 'error');
       }
     }
   };

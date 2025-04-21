@@ -4,6 +4,7 @@ import { TaskCard } from "../../ui/TaskCard/TaskCard";
 import { useState, useEffect } from "react";
 import { Modal } from "../../ui/Modal/Modal";
 import { useTaskStore, useSprintStore } from "../../../store";
+import { showAlert, showConfirm } from "../../../utils/sweetAlert";
 
 export const ScreenBacklog = () => {
   const [openModalTask, setOpenModalTask] = useState(false);
@@ -42,12 +43,19 @@ export const ScreenBacklog = () => {
   };
 
   const handleDeleteTask = async (taskId: string) => {
-    if (window.confirm('¿Estás seguro de que deseas eliminar esta tarea?')) {
+    const result = await showConfirm(
+      '¿Eliminar tarea?', 
+      '¿Estás seguro de que deseas eliminar esta tarea?',
+      'Sí, eliminar',
+      'Cancelar'
+    );
+    
+    if (result.isConfirmed) {
       try {
         await deleteTask(taskId);
       } catch (error) {
         console.error('Error al eliminar la tarea:', error);
-        alert('No se pudo eliminar la tarea');
+        showAlert('No se pudo eliminar la tarea', 'error');
       }
     }
   };
@@ -57,7 +65,7 @@ export const ScreenBacklog = () => {
       // Buscar la tarea a enviar
       const task = backlogTasks.find(t => t.id === taskId);
       if (!task) {
-        alert('Tarea no encontrada');
+        showAlert('Tarea no encontrada', 'error');
         return;
       }
 
@@ -72,10 +80,10 @@ export const ScreenBacklog = () => {
       // Si todo va bien, eliminar la tarea del backlog
       await deleteTask(taskId);
       
-      alert('Tarea enviada al sprint exitosamente');
+      showAlert('Tarea enviada al sprint exitosamente', 'success');
     } catch (error) {
       console.error('Error al enviar la tarea al sprint:', error);
-      alert('No se pudo enviar la tarea al sprint');
+      showAlert('No se pudo enviar la tarea al sprint', 'error');
     }
   };
   

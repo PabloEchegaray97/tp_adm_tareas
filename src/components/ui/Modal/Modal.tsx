@@ -1,6 +1,7 @@
 import { FC, useState, ChangeEvent, FormEvent } from "react";
 import styles from "./Modal.module.css";
 import { useTaskStore, useSprintStore } from "../../../store";
+import { showAlert } from "../../../utils/sweetAlert";
 
 type IModal = {
   handleCloseModal: VoidFunction;
@@ -54,6 +55,7 @@ export const Modal: FC<IModal> = ({ handleCloseModal, sprintId }) => {
             descripcion: formValues.descripcion,
             fechaLimite: formValues.fechaLimite
           });
+          showAlert(`Tarea "${formValues.titulo}" actualizada correctamente`, "success");
         } else {
           // Si estamos editando una tarea del backlog
           await updateBacklogTask({
@@ -62,6 +64,7 @@ export const Modal: FC<IModal> = ({ handleCloseModal, sprintId }) => {
             descripcion: formValues.descripcion,
             fechaLimite: formValues.fechaLimite,
           });
+          showAlert(`Tarea "${formValues.titulo}" actualizada correctamente`, "success");
         }
       } 
       // Si estamos creando una tarea en un sprint específico
@@ -71,6 +74,7 @@ export const Modal: FC<IModal> = ({ handleCloseModal, sprintId }) => {
           descripcion: formValues.descripcion,
           fechaLimite: formValues.fechaLimite,
         });
+        showAlert(`Tarea "${formValues.titulo}" creada correctamente en el sprint`, "success");
       } 
       // Si estamos creando una tarea en el backlog
       else {
@@ -80,12 +84,14 @@ export const Modal: FC<IModal> = ({ handleCloseModal, sprintId }) => {
           fechaLimite: formValues.fechaLimite,
           estado: 'pendiente'
         });
+        showAlert(`Tarea "${formValues.titulo}" creada correctamente en el backlog`, "success");
       }
       
       setActiveTask(null);
       handleCloseModal();
     } catch (error) {
       console.error("Error al guardar la tarea:", error);
+      showAlert("Ha ocurrido un error al guardar la tarea", "error");
     } finally {
       setIsSubmitting(false);
     }

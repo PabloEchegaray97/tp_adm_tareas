@@ -6,6 +6,7 @@ import { Edit, Visibility, Delete } from '@mui/icons-material';
 import { useSprintStore } from '../../../store';
 import { SprintModal } from '../SprintModal/SprintModal';
 import { ISprint } from '../../../types/ISprint';
+import { showAlert, showConfirm } from '../../../utils/sweetAlert';
 
 interface SprintListItemProps {
   sprintId?: string;
@@ -33,16 +34,26 @@ const SprintListItem = ({ sprintId, sprintNumber, startDate, endDate }: SprintLi
     e.preventDefault(); // Prevenir navegación al hacer clic
     e.stopPropagation(); // Evitar que el evento se propague
     
-    if (sprintId && window.confirm(`¿Estás seguro que deseas eliminar el ${sprintNumber}?`)) {
-      try {
-        // Importar el store y usar su método de eliminación
-        const { deleteSprint } = useSprintStore.getState();
-        await deleteSprint(sprintId);
-        // Refrescar la lista después de eliminar
-        fetchSprints();
-      } catch (error) {
-        console.error('Error al eliminar el sprint:', error);
-        alert('No se pudo eliminar el sprint');
+    if (sprintId) {
+      const result = await showConfirm(
+        `¿Eliminar sprint?`, 
+        `¿Estás seguro que deseas eliminar el ${sprintNumber}?`,
+        'Sí, eliminar',
+        'Cancelar'
+      );
+      
+      if (result.isConfirmed) {
+        try {
+          // Importar el store y usar su método de eliminación
+          const { deleteSprint } = useSprintStore.getState();
+          await deleteSprint(sprintId);
+          showAlert(`Sprint ${sprintNumber} eliminado correctamente`, 'success');
+          // Refrescar la lista después de eliminar
+          fetchSprints();
+        } catch (error) {
+          console.error('Error al eliminar el sprint:', error);
+          showAlert('No se pudo eliminar el sprint', 'error');
+        }
       }
     }
   };
