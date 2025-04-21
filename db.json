@@ -1,6 +1,13 @@
 {
   "backlog": {
-    "tareas": []
+    "tareas": [
+      {
+        "id": "backlog-1745244617064",
+        "titulo": "Sacar los colores o hacer algo con eso, uwu",
+        "descripcion": "Tralalero tralalá. ",
+        "fechaLimite": "2025-04-21"
+      }
+    ]
   },
   "sprintList": {
     "sprints": [
@@ -104,6 +111,13 @@
           }
         ],
         "id": "sprint-1744965157158"
+      },
+      {
+        "nombre": "asdf",
+        "fechaInicio": "2025-04-21",
+        "fechaCierre": "2025-04-26",
+        "tareas": [],
+        "id": "sprint-1745244423379"
       }
     ]
   }
