@@ -43,7 +43,7 @@
             "titulo": "Implementar sistema de notificaciones",
             "descripcion": "Crear un sistema de notificaciones para alertar a los usuarios sobre cambios en las tareas.",
             "fechaLimite": "2025-04-15",
-            "estado": "pendiente"
+            "estado": "en-progreso"
           },
           {
             "id": "task-005",
@@ -111,13 +111,6 @@
           }
         ],
         "id": "sprint-1744965157158"
-      },
-      {
-        "nombre": "es gay",
-        "fechaInicio": "2025-04-24",
-        "fechaCierre": "2025-04-30",
-        "tareas": [],
-        "id": "sprint-1745454619888"
       }
     ]
   }

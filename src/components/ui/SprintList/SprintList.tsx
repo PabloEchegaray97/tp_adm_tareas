@@ -9,6 +9,7 @@ const SprintList = () => {
   const { sprints, fetchSprints, isLoading } = useSprintStore();
   const [showModal, setShowModal] = useState(false);
 
+  // traemos todas las sprints y cargamos sprints
   useEffect(() => {
     fetchSprints();
   }, [fetchSprints]);
@@ -28,10 +29,7 @@ const SprintList = () => {
       <div className="sprint-list-header">
         <div className="sprint-list-title-container">
           <h2 className="sprint-list-title">Lista de Sprints</h2>
-          <button 
-            className="sprint-list-add-button"
-            onClick={handleOpenModal}
-          >
+          <button className="sprint-list-add-button" onClick={handleOpenModal}>
             <PlaylistAddIcon />
           </button>
         </div>

@@ -1,12 +1,13 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import './SprintListItem.css';
-import { Edit, Visibility, Delete } from '@mui/icons-material';
-import { useSprintStore } from '../../../store';
-import { SprintModal } from '../SprintModal/SprintModal';
-import { ISprint } from '../../../types/ISprint';
-import { showAlert, showConfirm } from '../../../utils/sweetAlert';
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import "./SprintListItem.css";
+import { Edit, Visibility, Delete } from "@mui/icons-material";
+import { useSprintStore } from "../../../store";
+import { SprintModal } from "../SprintModal/SprintModal";
+import { ISprint } from "../../../types/ISprint";
+import { showAlert, showConfirm } from "../../../utils/sweetAlert";
+import { SprintDetailModal } from "../SprintDetailModal/SprintDetailModal";
 
 interface SprintListItemProps {
   sprintId?: string;
@@ -15,14 +16,19 @@ interface SprintListItemProps {
   endDate: string;
 }
 
-const SprintListItem = ({ sprintId, sprintNumber, startDate, endDate }: SprintListItemProps) => {
+const SprintListItem = ({
+  sprintId,
+  sprintNumber,
+  startDate,
+  endDate,
+}: SprintListItemProps) => {
   // Si no se proporciona un ID específico, generarlo a partir del título
-  const routeId = sprintId || sprintNumber.toLowerCase().replace(' ', '-');
+  const routeId = sprintId || sprintNumber.toLowerCase().replace(" ", "-");
   const [showEditModal, setShowEditModal] = useState(false);
   const { fetchSprints, sprints } = useSprintStore();
 
   // Encontrar el objeto sprint completo usando el ID
-  const sprintData = sprintId ? sprints.find(s => s.id === sprintId) : null;
+  const sprintData = sprintId ? sprints.find((s) => s.id === sprintId) : null;
 
   const handleEdit = (e: React.MouseEvent) => {
     e.preventDefault(); // Prevenir navegación al hacer clic
@@ -33,26 +39,29 @@ const SprintListItem = ({ sprintId, sprintNumber, startDate, endDate }: SprintLi
   const handleDelete = async (e: React.MouseEvent) => {
     e.preventDefault(); // Prevenir navegación al hacer clic
     e.stopPropagation(); // Evitar que el evento se propague
-    
+
     if (sprintId) {
       const result = await showConfirm(
-        `¿Eliminar sprint?`, 
+        `¿Eliminar sprint?`,
         `¿Estás seguro que deseas eliminar el ${sprintNumber}?`,
-        'Sí, eliminar',
-        'Cancelar'
+        "Sí, eliminar",
+        "Cancelar"
       );
-      
+
       if (result.isConfirmed) {
         try {
           // Importar el store y usar su método de eliminación
           const { deleteSprint } = useSprintStore.getState();
           await deleteSprint(sprintId);
-          showAlert(`Sprint ${sprintNumber} eliminado correctamente`, 'success');
+          showAlert(
+            `Sprint ${sprintNumber} eliminado correctamente`,
+            "success"
+          );
           // Refrescar la lista después de eliminar
           fetchSprints();
         } catch (error) {
-          console.error('Error al eliminar el sprint:', error);
-          showAlert('No se pudo eliminar el sprint', 'error');
+          console.error("Error al eliminar el sprint:", error);
+          showAlert("No se pudo eliminar el sprint", "error");
         }
       }
     }
@@ -63,6 +72,7 @@ const SprintListItem = ({ sprintId, sprintNumber, startDate, endDate }: SprintLi
     // Refrescar la lista después de editar
     fetchSprints();
   };
+  const [showDetailModal, setShowDetailModal] = useState(false);
 
   return (
     <li className="sprint-list-item">
@@ -81,25 +91,26 @@ const SprintListItem = ({ sprintId, sprintNumber, startDate, endDate }: SprintLi
             </div>
           </div>
           <div className="sprint-list-item-buttons">
-            <button 
+            <button
               className="action-button"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                // La navegación ya está manejada por el NavLink
+                setShowDetailModal(true);
               }}
               title="Ver sprint"
             >
               <Visibility />
             </button>
-            <button 
+
+            <button
               className="action-button"
               onClick={handleEdit}
               title="Editar sprint"
             >
               <Edit />
             </button>
-            <button 
+            <button
               className="action-button"
               onClick={handleDelete}
               title="Eliminar sprint"
@@ -109,16 +120,22 @@ const SprintListItem = ({ sprintId, sprintNumber, startDate, endDate }: SprintLi
           </div>
         </div>
       </NavLink>
-      
+
       {/* Modal para editar sprint */}
       {showEditModal && sprintData && (
-        <SprintModal 
-          handleCloseModal={handleCloseModal} 
+        <SprintModal
+          handleCloseModal={handleCloseModal}
           activeSprint={sprintData as ISprint}
+        />
+      )}
+      {showDetailModal && sprintData && (
+        <SprintDetailModal
+          sprint={sprintData}
+          onClose={() => setShowDetailModal(false)}
         />
       )}
     </li>
   );
 };
 
-export default SprintListItem; 
+export default SprintListItem;
