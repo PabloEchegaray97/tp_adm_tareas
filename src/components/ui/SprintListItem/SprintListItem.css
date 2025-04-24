@@ -30,7 +30,7 @@
 }
 
 .sprint-list-item-icon {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
   display: flex;
   align-items: center;
   color: var(--color-text-primary);
@@ -44,7 +44,7 @@
 .sprint-list-item-content {
   flex: 1;
   min-width: 0;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
   padding-right: 1rem;
 }
 
@@ -61,7 +61,7 @@
   font-size: 0.9rem;
   color: var(--color-text-secondary);
   line-height: 1.2;
-} 
+}
 
 .sprint-list-item-content-header {
   display: flex;
@@ -71,14 +71,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: .3rem;
+  gap: 0.3rem;
 }
 
 .action-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: .4rem;
+  padding: 0.4rem;
   background-color: transparent;
   border: none;
   cursor: pointer;

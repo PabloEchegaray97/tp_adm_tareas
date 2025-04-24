@@ -1,5 +1,5 @@
 .navbar {
-  background-color: var(--color-bg-card);
+  background-color: var(--color-bg-secondary);
   border-bottom: 1px solid var(--color-border);
   padding: 0.5rem 1rem;
   height: 64px;
@@ -43,4 +43,4 @@
 .theme-toggle-button svg {
   width: 24px;
   height: 24px;
-} 
+}

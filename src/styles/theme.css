@@ -1,28 +1,34 @@
 :root {
   /* Colores modo claro */
-  --color-bg-primary: #f5f5f5;
+  --color-bg-primary: #ffffff;
   --color-bg-secondary: #ffffff;
+  --color-bg-terceary: #f6f6f6;
   --color-text-primary: #000000;
   --color-text-secondary: #666666;
   --color-border: #e0e0e0;
-  --color-button-primary: #000000;
+  --color-button-primary: #f6f6f6;
+  --color-button-secondary: #000000;
   --color-button-text: #ffffff;
   --color-hover: rgba(0, 0, 0, 0.04);
+  --color-hover2: rgba(255, 255, 255, 0.08);
   --color-selected: rgba(0, 0, 0, 0.08);
   --color-bg-card: #ffffff;
 }
 
 [data-theme="dark"] {
-  --color-bg-primary: #121212;
-  --color-bg-secondary: #1e1e1e;
+  --color-bg-primary: #17171a;
+  --color-bg-secondary: #010101;
+  --color-bg-terceary: #010101;
   --color-text-primary: #ffffff;
   --color-text-secondary: #b3b3b3;
   --color-border: #333333;
-  --color-button-primary: #0f0f0f;
+  --color-button-primary: #17171a;
+  --color-button-secondary: #000000;
   --color-button-text: #ffffff;
   --color-hover: rgba(255, 255, 255, 0.08);
+  --color-hover2: rgba(255, 255, 255, 0.08);
   --color-selected: rgba(255, 255, 255, 0.12);
-  --color-bg-card: #0f0f0f;
+  --color-bg-card: #17171a;
 }
 
 * {
@@ -32,7 +38,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
 }
@@ -43,7 +49,8 @@ button {
   outline: none;
 }
 
-input, select {
+input,
+select {
   outline: none;
   border: 1px solid var(--color-border);
   background-color: var(--color-bg-secondary);
@@ -65,4 +72,4 @@ input, select {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-text-primary);
-} 
+}

@@ -6,8 +6,6 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  
-
 }
 
 .task-content {
@@ -79,7 +77,6 @@
 
 .send-btn:hover {
   background-color: var(--color-primary-dark);
-  
 }
 
 .action-buttons-group {

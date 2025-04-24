@@ -20,7 +20,7 @@
 }
 
 .sidebar-header {
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
 }
 
 .sidebar-link {
@@ -31,18 +31,16 @@
 
 .backlog-button {
   width: 100%;
-  background-color: var(--color-button-primary);
+  background-color: var(--color-button-primary) !important;
   color: var(--color-button-text);
 }
-
-
-
-
+.backlog-button:hover {
+  display: flex !important;
+  background-color: var(--color-hover) !important;
+}
 
 /* Estilos para el SprintList */
 .sprint-list {
   flex: 1;
   overflow-y: auto;
 }
-
-

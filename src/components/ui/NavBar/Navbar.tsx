@@ -13,7 +13,7 @@ const Navbar = ({ onToggleTheme, isDarkMode }: NavbarProps) => {
     <nav className="navbar">
       <div className="navbar-content">
         <div className="navbar-spacer" />
-        <h1 className="navbar-title">Administrador de tareas</h1>
+        <h1 className="navbar-title">ADMINISTRADOR DE TAREAS</h1>
         <Button
           variant="text"
           size="small"
