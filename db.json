@@ -89,28 +89,6 @@
         "fechaCierre": "2025-04-28",
         "tareas": [],
         "id": "sprint-1744963361021"
-      },
-      {
-        "nombre": "el que lee esto",
-        "fechaInicio": "2025-04-18",
-        "fechaCierre": "2025-04-25",
-        "tareas": [
-          {
-            "titulo": "test",
-            "descripcion": "test",
-            "fechaLimite": "2025-04-18",
-            "id": "task-1744965168246",
-            "estado": "completado"
-          },
-          {
-            "titulo": "xd",
-            "descripcion": "xxas",
-            "fechaLimite": "2025-04-18",
-            "id": "task-1744965394772",
-            "estado": "en-progreso"
-          }
-        ],
-        "id": "sprint-1744965157158"
       }
     ]
   }

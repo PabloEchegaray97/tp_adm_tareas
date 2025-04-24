@@ -5,20 +5,31 @@ import { useState, useEffect } from "react";
 import { Modal } from "../../ui/Modal/Modal";
 import { useTaskStore, useSprintStore } from "../../../store";
 import { showAlert, showConfirm } from "../../../utils/sweetAlert";
+import { ITask } from "../../../types/ITask";
+import { TaskDetailModal } from "../TaskDetailModal/TaskDetailModal";
 
 export const ScreenBacklog = () => {
   const [openModalTask, setOpenModalTask] = useState(false);
-  const { 
-    tasks: backlogTasks, 
-    isLoading: loading, 
-    fetchTasks, 
-    setActiveTask,
-    deleteTask 
-  } = useTaskStore();
+  const [openTaskDetail, setOpenTaskDetail] = useState(false);
+  const [taskToView, setTaskToView] = useState<ITask | null>(null);
+
+  const handleViewTask = (taskId: string) => {
+    const task = backlogTasks.find((t) => t.id === taskId);
+    if (task) {
+      setTaskToView(task);
+      setOpenTaskDetail(true);
+    }
+  };
 
   const {
-    addTask: addTaskToSprint
-  } = useSprintStore();
+    tasks: backlogTasks,
+    isLoading: loading,
+    fetchTasks,
+    setActiveTask,
+    deleteTask,
+  } = useTaskStore();
+
+  const { addTask: addTaskToSprint } = useSprintStore();
 
   useEffect(() => {
     fetchTasks();
@@ -28,14 +39,14 @@ export const ScreenBacklog = () => {
     setOpenModalTask(false);
     setActiveTask(null);
   };
-  
+
   const handleCreateTask = () => {
     setActiveTask(null);
     setOpenModalTask(true);
   };
-  
+
   const handleEditTask = (taskId: string) => {
-    const task = backlogTasks.find(t => t.id === taskId);
+    const task = backlogTasks.find((t) => t.id === taskId);
     if (task) {
       setActiveTask(task);
       setOpenModalTask(true);
@@ -44,18 +55,18 @@ export const ScreenBacklog = () => {
 
   const handleDeleteTask = async (taskId: string) => {
     const result = await showConfirm(
-      '¿Eliminar tarea?', 
-      '¿Estás seguro de que deseas eliminar esta tarea?',
-      'Sí, eliminar',
-      'Cancelar'
+      "¿Eliminar tarea?",
+      "¿Estás seguro de que deseas eliminar esta tarea?",
+      "Sí, eliminar",
+      "Cancelar"
     );
-    
+
     if (result.isConfirmed) {
       try {
         await deleteTask(taskId);
       } catch (error) {
-        console.error('Error al eliminar la tarea:', error);
-        showAlert('No se pudo eliminar la tarea', 'error');
+        console.error("Error al eliminar la tarea:", error);
+        showAlert("No se pudo eliminar la tarea", "error");
       }
     }
   };
@@ -63,9 +74,9 @@ export const ScreenBacklog = () => {
   const handleSendToSprint = async (taskId: string, sprintId: string) => {
     try {
       // Buscar la tarea a enviar
-      const task = backlogTasks.find(t => t.id === taskId);
+      const task = backlogTasks.find((t) => t.id === taskId);
       if (!task) {
-        showAlert('Tarea no encontrada', 'error');
+        showAlert("Tarea no encontrada", "error");
         return;
       }
 
@@ -73,31 +84,28 @@ export const ScreenBacklog = () => {
       await addTaskToSprint(sprintId, {
         titulo: task.titulo,
         descripcion: task.descripcion,
-        fechaLimite: task.fechaLimite || '',
-        estado: 'pendiente'
+        fechaLimite: task.fechaLimite || "",
+        estado: "pendiente",
       });
 
       // Si todo va bien, eliminar la tarea del backlog
       await deleteTask(taskId);
-      
-      showAlert('Tarea enviada al sprint exitosamente', 'success');
+
+      showAlert("Tarea enviada al sprint exitosamente", "success");
     } catch (error) {
-      console.error('Error al enviar la tarea al sprint:', error);
-      showAlert('No se pudo enviar la tarea al sprint', 'error');
+      console.error("Error al enviar la tarea al sprint:", error);
+      showAlert("No se pudo enviar la tarea al sprint", "error");
     }
   };
-  
+
   return (
     <>
       <div className="screen-backlog">
         <div className="backlog-header">
-          <h2>Backlog</h2>
+          <h2>BACKLOG</h2>
           <div className="header-actions">
             <span>Tareas en el backlog: {backlogTasks.length}</span>
-            <button
-              className="create-task-btn"
-              onClick={handleCreateTask}
-            >
+            <button className="create-task-btn" onClick={handleCreateTask}>
               Crear tarea
               <AddTask />
             </button>
@@ -109,14 +117,17 @@ export const ScreenBacklog = () => {
             <p>Cargando tareas...</p>
           ) : backlogTasks.length > 0 ? (
             backlogTasks.map((task) => (
-              <TaskCard 
-                key={task.id} 
-                titulo={task.titulo} 
+              <TaskCard
+                key={task.id}
+                titulo={task.titulo}
                 descripcion={task.descripcion}
                 fechaLimite={task.fechaLimite}
                 onEditClick={() => handleEditTask(task.id)}
                 onDeleteClick={() => handleDeleteTask(task.id)}
-                onSendToSprint={(sprintId) => handleSendToSprint(task.id, sprintId)}
+                onSendToSprint={(sprintId) =>
+                  handleSendToSprint(task.id, sprintId)
+                }
+                onViewClick={() => handleViewTask(task.id)}
               />
             ))
           ) : (
@@ -125,6 +136,15 @@ export const ScreenBacklog = () => {
         </div>
       </div>
       {openModalTask && <Modal handleCloseModal={handleCloseModal} />}
+      {openTaskDetail && taskToView && (
+        <TaskDetailModal
+          task={taskToView}
+          onClose={() => {
+            setOpenTaskDetail(false);
+            setTaskToView(null);
+          }}
+        />
+      )}
     </>
   );
 };

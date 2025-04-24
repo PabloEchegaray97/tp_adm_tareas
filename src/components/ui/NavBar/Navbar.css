@@ -20,12 +20,9 @@
 }
 
 .navbar-title {
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-size: 1.5rem;
   color: var(--color-text-primary);
   text-align: center;
-  flex-grow: 1;
-  margin: 0;
 }
 
 .theme-toggle-button {

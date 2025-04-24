@@ -14,14 +14,14 @@ interface TaskCardProps {
   onSendToSprint?: (sprintId: string) => void;
 }
 
-export const TaskCard: React.FC<TaskCardProps> = ({ 
-  titulo, 
-  descripcion, 
+export const TaskCard: React.FC<TaskCardProps> = ({
+  titulo,
+  descripcion,
   fechaLimite,
   onEditClick,
   onDeleteClick,
   onViewClick,
-  onSendToSprint
+  onSendToSprint,
 }) => {
   const [selectedSprintId, setSelectedSprintId] = useState<string>("");
 
@@ -42,17 +42,19 @@ export const TaskCard: React.FC<TaskCardProps> = ({
       <div className="task-content">
         <span className="task-title">Título: {titulo}</span>
         <span className="task-description">Descripción: {descripcion}</span>
-        {fechaLimite && <span className="task-created-at">Creado: {fechaLimite}</span>}
+        {fechaLimite && (
+          <span className="task-created-at">Creado: {fechaLimite}</span>
+        )}
       </div>
       <div className="task-actions">
         <div className="sprint-selector-wrapper">
-          <SprintSelector 
-            value={selectedSprintId} 
-            onChange={handleSprintChange} 
+          <SprintSelector
+            value={selectedSprintId}
+            onChange={handleSprintChange}
           />
         </div>
-        
-        <button 
+
+        <button
           className="action-btn send-btn"
           onClick={handleSendToSprint}
           disabled={!selectedSprintId}
@@ -65,10 +67,15 @@ export const TaskCard: React.FC<TaskCardProps> = ({
           <button className="action-btn" title="Ver" onClick={onViewClick}>
             <Visibility />
           </button>
+
           <button className="action-btn" title="Editar" onClick={onEditClick}>
             <Edit />
           </button>
-          <button className="action-btn" title="Eliminar" onClick={onDeleteClick}>
+          <button
+            className="action-btn"
+            title="Eliminar"
+            onClick={onDeleteClick}
+          >
             <Delete />
           </button>
         </div>
