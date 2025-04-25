@@ -2,13 +2,6 @@
   "backlog": {
     "tareas": [
       {
-        "id": "task-2001",
-        "titulo": "Diseñar esquema de base de datos",
-        "descripcion": "Definir entidades, relaciones y normalización para el sistema.",
-        "estado": "pendiente",
-        "fechaLimite": "2025-05-06"
-      },
-      {
         "id": "task-2002",
         "titulo": "Integrar autenticación con JWT",
         "descripcion": "Implementar login seguro con tokens y middlewares.",
@@ -102,6 +95,13 @@
             "fechaLimite": "2025-04-24",
             "id": "task-1745542936553",
             "estado": "pendiente"
+          },
+          {
+            "titulo": "Diseñar esquema de base de datos",
+            "descripcion": "Definir entidades, relaciones y normalización para el sistema.",
+            "fechaLimite": "2025-05-06",
+            "estado": "pendiente",
+            "id": "task-1745544423348"
           }
         ]
       }

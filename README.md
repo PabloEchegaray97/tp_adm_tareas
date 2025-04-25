@@ -1,54 +1,74 @@
-# React + TypeScript + Vite
+# Sistema de Administración de Tareas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descripción General
 
-Currently, two official plugins are available:
+Este proyecto presenta una aplicación web desarrollada como parte del trabajo práctico para la materia de Metodología de Sistemas (TUP). Es un sistema completo de administración de tareas, diseñado con enfoque en la organización de proyectos mediante el uso de sprints y backlog, siguiendo metodologías ágiles.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tecnologías Utilizadas
 
-## Expanding the ESLint configuration
+- **React 19**: Framework frontend para la construcción de interfaces interactivas
+- **TypeScript**: Superconjunto tipado de JavaScript que mejora la calidad del código
+- **Zustand**: Biblioteca para manejo de estado global simplificado
+- **Material UI (MUI)**: Sistema de componentes para interfaces consistentes
+- **SweetAlert2**: Biblioteca para alertas personalizadas y responsivas
+- **Vite**: Herramienta de compilación rápida para desarrollo moderno
+- **CSS Modules**: Sistema de encapsulamiento de estilos para evitar conflictos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Estructura del Proyecto
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+src/
+├── components/      # Componentes de la interfaz
+│   ├── screens/     # Vistas principales
+│   └── ui/          # Elementos de interfaz reutilizables
+├── http/            # Configuración de peticiones HTTP
+├── store/           # Gestión de estado global con Zustand
+├── styles/          # Estilos globales y temas
+├── types/           # Definiciones de tipos TypeScript
+└── utils/           # Utilidades y funciones auxiliares
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Características Principales
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Gestión de Sprints**: Creación, edición y visualización de períodos de trabajo
+- **Backlog de Tareas**: Administración de tareas pendientes sin asignación a sprints
+- **Kanban Board**: Visualización de tareas en columnas según su estado (pendiente, en progreso, completado)
+- **Temas Claro/Oscuro**: Sistema completo de cambio de tema visual
+- **Alertas Personalizadas**: Interacciones mejoradas mediante alertas modales
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## Funcionalidades Detalladas
+
+### Gestión de Sprints
+- Crear sprints con nombre, fecha de inicio y cierre
+- Visualizar lista de sprints disponibles
+- Editar información de sprints existentes
+- Eliminar sprints con confirmación
+
+### Gestión de Tareas en Backlog & Sprints
+- Crear tareas con título, descripción y fecha límite
+- Asignar tareas a sprints específicos
+- Mover tareas entre diferentes estados (pendiente, en progreso, completado)
+- Enviar tareas al backlog cuando sea necesario
+- Visualizar detalles de tareas en modales informativos
+
+## Instalación y Ejecución
+
+Para comenzar a trabajar con este proyecto, es necesario seguir los siguientes pasos:
+
+```bash
+# Clonar el repositorio
+git clone [url-del-repositorio]
+
+# Ingresar al directorio
+cd tp_adm_tareas
+
+# Instalar dependencias
+npm install
+
+# Ejecutar servidor de desarrollo
+npm run dev
+
+# En una terminal separada, ejecutar el servidor de base de datos
+npm run dbDev
 ```
+
