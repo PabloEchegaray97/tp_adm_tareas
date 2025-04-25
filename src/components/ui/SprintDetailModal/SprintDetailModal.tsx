@@ -17,7 +17,7 @@ export const SprintDetailModal = ({
           <h3>{sprint.nombre}</h3>
         </div>
         
-        <div>
+        <div className={styles.contentDetail}>
           <p>
             <strong>Fecha de inicio:</strong> {sprint.fechaInicio}
           </p>
@@ -26,16 +26,17 @@ export const SprintDetailModal = ({
           </p>
           <p>
             <strong>Tareas:</strong>
-          </p>
-          {sprint.tareas.length > 0 ? (
-            <ul>
+            {sprint.tareas.length > 0 ? (
+            <div>
               {sprint.tareas.map((tarea, index) => (
-                <li key={index}>{tarea.titulo}</li>
+                <p key={index}>- {tarea.titulo}</p>
               ))}
-            </ul>
+            </div>
           ) : (
             <p>No hay tareas asignadas</p>
           )}
+          </p>
+          
         </div>
         
         <div className={styles.buttonCard}>

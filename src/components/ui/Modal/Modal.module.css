@@ -21,7 +21,7 @@
   justify-content: space-between;
   background-color: var(--color-bg-card);
   width: 40vw;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 0.3rem;
   animation: fadeIn 0.5s;
 }
@@ -83,6 +83,12 @@ textarea {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.contentDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 @keyframes fadeIn {

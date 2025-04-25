@@ -14,13 +14,13 @@ export const TaskDetailModal = ({ task, onClose }: TaskDetailModalProps) => {
           <h3>{task.titulo}</h3>
         </div>
         
-        <div>
+        <div className={styles.contentDetail}>
           <p>
             <strong>Descripción:</strong> {task.descripcion}
           </p>
           {task.estado && (
             <p>
-              <strong>Estado:</strong> {task.estado}
+              <strong>Estado:</strong> {task.estado.charAt(0).toUpperCase() + task.estado.slice(1)}
             </p>
           )}
           {task.fechaLimite && (
