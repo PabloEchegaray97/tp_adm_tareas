@@ -12,7 +12,7 @@
   font-size: 1rem !important;
 }
 
-.swal-confirm-button, 
+.swal-confirm-button,
 .swal-cancel-button {
   border-radius: 5px !important;
   font-weight: 400 !important;
@@ -20,15 +20,19 @@
   font-size: 1rem !important;
 }
 
-.swal-confirm-button:focus, 
+.swal-confirm-button:focus,
 .swal-cancel-button:focus {
   box-shadow: none !important;
 }
 
 /* Para evitar el color morado en botones */
 .swal2-styled.swal2-confirm {
-  background-color: var(--color-button-primary) !important;
-  color: var(--color-button-text) !important;
+  background-color: var(--color-bg-secondary) !important;
+  color: var(--color-text-primary) !important;
+  border: 1px solid var(--color-border) !important;
+}
+.swal2-styled.swal2-confirm:hover {
+  background-color: var(--color-hover) !important;
 }
 
 .swal2-styled.swal2-cancel {
@@ -39,4 +43,4 @@
 
 .swal2-styled.swal2-cancel:hover {
   background-color: var(--color-hover) !important;
-} 
+}

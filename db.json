@@ -2,93 +2,101 @@
   "backlog": {
     "tareas": [
       {
-        "id": "backlog-1745244617064",
-        "titulo": "Sacar los colores o hacer algo con eso, uwu",
-        "descripcion": "Tralalero tralalá. ",
-        "fechaLimite": "2025-04-21"
+        "id": "task-2001",
+        "titulo": "Diseñar esquema de base de datos",
+        "descripcion": "Definir entidades, relaciones y normalización para el sistema.",
+        "estado": "pendiente",
+        "fechaLimite": "2025-05-06"
+      },
+      {
+        "id": "task-2002",
+        "titulo": "Integrar autenticación con JWT",
+        "descripcion": "Implementar login seguro con tokens y middlewares.",
+        "estado": "pendiente",
+        "fechaLimite": "2025-05-08"
+      },
+      {
+        "id": "task-2003",
+        "titulo": "Agregar documentación Swagger",
+        "descripcion": "Documentar todos los endpoints del backend para el equipo.",
+        "estado": "pendiente",
+        "fechaLimite": "2025-05-12"
+      },
+      {
+        "id": "task-2004",
+        "titulo": "Crear página de error 404 personalizada",
+        "descripcion": "Mejorar la experiencia de usuario en rutas no encontradas.",
+        "estado": "pendiente",
+        "fechaLimite": "2025-05-15"
+      },
+      {
+        "titulo": "asdas",
+        "descripcion": "asdasd",
+        "fechaLimite": "2025-05-02",
+        "estado": "pendiente",
+        "id": "backlog-1745541252344"
       }
     ]
   },
   "sprintList": {
     "sprints": [
       {
-        "id": "sprint-001",
-        "nombre": "Sprint 1",
-        "fechaInicio": "2025-04-01",
-        "fechaCierre": "2025-04-15",
+        "id": "sprint-backend-core",
+        "nombre": "Sprint Backend Core",
+        "fechaInicio": "2025-04-22",
+        "fechaCierre": "2025-05-03",
         "tareas": [
           {
-            "id": "task-001",
-            "titulo": "Configurar el entorno de desarrollo",
-            "descripcion": "Instalar dependencias y configurar el proyecto en local.",
+            "id": "task-2101",
+            "titulo": "Implementar modelo de usuarios",
+            "descripcion": "Crear esquema de usuarios con validaciones y roles.",
             "estado": "completado",
-            "fechaLimite": "2025-04-03"
+            "fechaLimite": "2025-04-24"
           },
           {
-            "id": "task-002",
-            "titulo": "Diseñar la página de inicio",
-            "descripcion": "Crear el diseño de la landing page según el prototipo de Figma.",
-            "estado": "en-progreso",
-            "fechaLimite": "2025-04-08"
-          },
-          {
-            "id": "task-003",
-            "titulo": "Implementar autenticación",
-            "descripcion": "Configurar el login y registro con Firebase Authentication.",
+            "id": "task-2102",
+            "titulo": "Configurar entorno de desarrollo",
+            "descripcion": "Dotenv, nodemon y estructura de carpetas.",
             "estado": "completado",
-            "fechaLimite": "2025-04-12"
+            "fechaLimite": "2025-04-23"
           },
           {
-            "id": "task-004",
-            "titulo": "Implementar sistema de notificaciones",
-            "descripcion": "Crear un sistema de notificaciones para alertar a los usuarios sobre cambios en las tareas.",
-            "fechaLimite": "2025-04-15",
-            "estado": "en-progreso"
-          },
-          {
-            "id": "task-005",
-            "titulo": "Optimizar rendimiento de carga",
-            "descripcion": "Mejorar el tiempo de carga de la aplicación reduciendo el tamaño de los bundles.",
-            "fechaLimite": "2025-04-15",
-            "estado": "pendiente"
+            "id": "task-2103",
+            "titulo": "Middleware de autenticación",
+            "descripcion": "Protección de rutas privadas y manejo de errores.",
+            "estado": "pendiente",
+            "fechaLimite": "2025-04-30"
           }
         ]
       },
       {
-        "id": "sprint-002",
-        "nombre": "Sprint 2",
-        "fechaInicio": "2025-05-01",
-        "fechaCierre": "2025-05-12",
+        "id": "sprint-ui-dashboard",
+        "nombre": "Sprint UI - Dashboard Admin",
+        "fechaInicio": "2025-05-04",
+        "fechaCierre": "2025-05-14",
         "tareas": [
           {
-            "id": "task-004",
-            "titulo": "Desarrollar API de usuarios",
-            "descripcion": "Crear endpoints para gestión de perfiles de usuario.",
-            "estado": "en-progreso",
-            "fechaLimite": "2025-05-05"
+            "id": "task-2201",
+            "titulo": "Diseñar interfaz de dashboard",
+            "descripcion": "Crear layout con sidebar, header y contenido principal.",
+            "estado": "pendiente",
+            "fechaLimite": "2025-05-07"
           },
           {
-            "id": "task-006",
-            "titulo": "Implementar sistema de roles",
-            "descripcion": "Configurar permisos y roles de usuarios en el sistema.",
-            "estado": "completado",
+            "id": "task-2202",
+            "titulo": "Conectar frontend con API de usuarios",
+            "descripcion": "Mostrar datos dinámicos en el dashboard.",
+            "estado": "pendiente",
             "fechaLimite": "2025-05-10"
           },
           {
-            "titulo": "Test11",
-            "descripcion": "tess",
-            "fechaLimite": "2025-04-18",
+            "id": "task-2203",
+            "titulo": "Agregar control de acceso al dashboard",
+            "descripcion": "Validar permisos antes de renderizar componentes.",
             "estado": "pendiente",
-            "id": "task-1744965552577"
+            "fechaLimite": "2025-05-13"
           }
         ]
-      },
-      {
-        "nombre": "TEST",
-        "fechaInicio": "2025-04-18",
-        "fechaCierre": "2025-04-28",
-        "tareas": [],
-        "id": "sprint-1744963361021"
       }
     ]
   }
