@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./TaskCard.css";
+import styles from './TaskCard.module.css'
 import { Share, Visibility, Edit, Delete } from "@mui/icons-material";
 import { SprintSelector } from "../SprintSelector/SprintSelector";
 import { showAlert } from "../../../utils/sweetAlert";
@@ -38,16 +38,16 @@ export const TaskCard: React.FC<TaskCardProps> = ({
   };
 
   return (
-    <div className="task-card">
-      <div className="task-content">
-        <span className="task-title">Título: {titulo}</span>
-        <span className="task-description">Descripción: {descripcion}</span>
+    <div className={styles.taskCard}>
+      <div className={styles.taskContent}>
+        <span className={styles.taskTitle}>Título: {titulo}</span>
+        <span className={styles.taskDescription}>Descripción: {descripcion}</span>
         {fechaLimite && (
-          <span className="task-created-at">Creado: {fechaLimite}</span>
+          <span className={styles.taskCreatedAt}>Creado: {fechaLimite}</span>
         )}
       </div>
-      <div className="task-actions">
-        <div className="sprint-selector-wrapper">
+      <div className={styles.taskActions}>
+        <div className={styles.sprintSelectorWrapper}>
           <SprintSelector
             value={selectedSprintId}
             onChange={handleSprintChange}
@@ -55,7 +55,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
         </div>
 
         <button
-          className="action-btn send-btn"
+          className={styles.actionBtn}
           onClick={handleSendToSprint}
           disabled={!selectedSprintId}
         >
@@ -63,16 +63,16 @@ export const TaskCard: React.FC<TaskCardProps> = ({
           <Share />
         </button>
 
-        <div className="action-buttons-group">
-          <button className="action-btn" title="Ver" onClick={onViewClick}>
+        <div className={styles.actionButtonsGroup}>
+          <button className={styles.actionBtn} title="Ver" onClick={onViewClick}>
             <Visibility />
           </button>
 
-          <button className="action-btn" title="Editar" onClick={onEditClick}>
+          <button className={styles.actionBtn} title="Editar" onClick={onEditClick}>
             <Edit />
           </button>
           <button
-            className="action-btn"
+            className={styles.actionBtn}
             title="Eliminar"
             onClick={onDeleteClick}
           >

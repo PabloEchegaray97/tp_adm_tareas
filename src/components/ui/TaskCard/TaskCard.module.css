@@ -1,4 +1,4 @@
-.task-card {
+.taskCard {
   background-color: var(--color-bg-card);
   border: 1px solid var(--color-border);
   border-radius: 8px;
@@ -8,24 +8,24 @@
   align-items: flex-start;
 }
 
-.task-content {
+.taskContent {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   flex: 1;
 }
 
-.task-title,
-.task-description {
+.taskTitle,
+.taskDescription {
   color: var(--color-text-primary);
   font-size: 0.9rem;
 }
 
-.task-description {
+.taskDescription {
   color: var(--color-text-secondary);
 }
 
-.task-actions {
+.taskActions {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -34,7 +34,7 @@
   margin-top: 1rem;
 }
 
-.action-btn {
+.actionBtn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -48,11 +48,11 @@
   transition: all 0.2s ease;
 }
 
-.action-btn:hover {
+.actionBtn:hover {
   background-color: var(--color-hover);
 }
 
-.action-btn:disabled {
+.actionBtn:disabled {
   cursor: not-allowed;
   border: 1px solid var(--color-border);
 }
@@ -64,28 +64,28 @@
   justify-content: center;
 }
 
-.task-created-at {
+.taskCreatedAt {
   font-size: 0.8rem;
   color: var(--color-text-secondary);
 }
 
-.send-btn {
+.sendBtn {
   background-color: var(--color-primary);
   color: white;
   border: none;
 }
 
-.send-btn:hover {
+.sendBtn:hover {
   background-color: var(--color-primary-dark);
 }
 
-.action-buttons-group {
+.actionButtonsGroup {
   display: flex;
   gap: 0.3rem;
   margin-left: 0.5rem;
 }
 
-.sprint-selector-wrapper {
+.sprintSelectorWrapper {
   min-width: 200px;
   flex: 1;
 }

@@ -50,7 +50,7 @@
             "id": "task-2102",
             "titulo": "Configurar entorno de desarrollo",
             "descripcion": "Dotenv, nodemon y estructura de carpetas.",
-            "estado": "completado",
+            "estado": "pendiente",
             "fechaLimite": "2025-04-23"
           },
           {

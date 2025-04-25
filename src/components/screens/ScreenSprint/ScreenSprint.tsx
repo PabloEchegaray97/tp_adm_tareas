@@ -136,7 +136,7 @@ export const ScreenSprint = () => {
   return (
     <div className="screen-sprint">
       <div className="sprint-header">
-        <h1>Sprint: {sprint.nombre}</h1>
+        <h1>{sprint.nombre.toUpperCase()}</h1>
         <div className="header-actions">
           <span>
             Fecha de inicio: {sprint.fechaInicio} - Fecha de cierre:{" "}
