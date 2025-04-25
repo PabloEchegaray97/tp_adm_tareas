@@ -47,13 +47,6 @@
         "fechaCierre": "2025-05-03",
         "tareas": [
           {
-            "id": "task-2101",
-            "titulo": "Implementar modelo de usuarios",
-            "descripcion": "Crear esquema de usuarios con validaciones y roles.",
-            "estado": "completado",
-            "fechaLimite": "2025-04-24"
-          },
-          {
             "id": "task-2102",
             "titulo": "Configurar entorno de desarrollo",
             "descripcion": "Dotenv, nodemon y estructura de carpetas.",
@@ -64,7 +57,7 @@
             "id": "task-2103",
             "titulo": "Middleware de autenticación",
             "descripcion": "Protección de rutas privadas y manejo de errores.",
-            "estado": "pendiente",
+            "estado": "completado",
             "fechaLimite": "2025-04-30"
           }
         ]
@@ -95,6 +88,20 @@
             "descripcion": "Validar permisos antes de renderizar componentes.",
             "estado": "pendiente",
             "fechaLimite": "2025-05-13"
+          },
+          {
+            "titulo": "Implementar modelo de usuarios",
+            "descripcion": "Crear esquema de usuarios con validaciones y roles.",
+            "fechaLimite": "2025-04-24",
+            "estado": "completado",
+            "id": "task-1745542918802"
+          },
+          {
+            "titulo": "test",
+            "descripcion": "ereasasd",
+            "fechaLimite": "2025-04-24",
+            "id": "task-1745542936553",
+            "estado": "pendiente"
           }
         ]
       }
